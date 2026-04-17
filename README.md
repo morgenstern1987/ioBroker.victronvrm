@@ -16,7 +16,7 @@
 
 ## ✨ Features
 
-- **111 Datenpunkte** aus allen Victron-Geräten – identische Sensor-Abdeckung wie der populäre [hass-victron-vrm-api](https://github.com/jayjojayson/hass-victron-vrm-api) Home Assistant Adapter
+- **111 Datenpunkte** aus allen Victron-Geräten
 - **Kein lokaler Zugriff nötig** – funktioniert auch für mobile Systeme (Wohnmobil, Boot, Fahrzeug)
 - **Sicherer Access Token** – kein Benutzername/Passwort im Adapter gespeichert
 - **Berechnete Werte** direkt im Adapter (Leistung, Zellspannungsdifferenz, PV-Gesamtertrag …)
