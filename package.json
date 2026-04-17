@@ -3,10 +3,10 @@
   "version": "0.3.1",
   "description": "ioBroker Adapter für Victron Energy VRM Portal – 111 Sensoren via VRM REST API v2",
   "author": {
-    "name": "ioBroker User",
+    "name": "morgenstern1987",
     "email": "iobroker@example.com"
   },
-  "homepage": "https://github.com/user/ioBroker.victronvrm",
+  "homepage": "https://github.com/morgenstern1987/ioBroker.victronvrm",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -20,10 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/ioBroker.victronvrm.git"
+    "url": "https://github.com/morgenstern1987/ioBroker.victronvrm.git"
   },
   "bugs": {
-    "url": "https://github.com/user/ioBroker.victronvrm/issues"
+    "url": "https://github.com/morgenstern1987/ioBroker.victronvrm/issues"
   },
   "main": "main.js",
   "engines": {
