@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
-      "0.3.0": { "en": "111 sensors with exact VRM IDs, Overall Stats per period, calculated values", "de": "111 Sensoren mit exakten VRM-IDs, Overall-Stats pro Zeitraum, berechnete Werte" },
+      "0.3.1": { "en": "Fix: /installations/{id} returns 400, use user list instead; fix stats interval parameter", "de": "Fix: /installations/{id} liefert 400, nutze User-Liste; Stats-Intervall-Parameter korrigiert" },
       "0.2.0": { "en": "Full VRM API v2 with access token auth", "de": "Vollständige VRM API v2 mit Access-Token" },
       "0.1.0": { "en": "Initial release", "de": "Erstveröffentlichung" }
     },

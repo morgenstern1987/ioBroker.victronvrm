@@ -184,6 +184,13 @@ class VictronVrmAdapter extends utils.Adapter {
         try {
             const records = await this.api.getDiagnostics(this.idSite);
 
+            // Debug: erste Abfrage strukturell loggen
+            if (records.length > 0 && !this._diagLogged) {
+                this._diagLogged = true;
+                this.log.debug(`Diagnostics Beispiel-Record: ${JSON.stringify(records[0])}`);
+                this.log.debug(`Diagnostics Gesamt: ${records.length} Einträge`);
+            }
+
             // Baue eine Map: vrmId → rawValue
             // Wichtig: Ein Gerät kann mehrfach vorkommen (mehrere Instanzen).
             // Wir nehmen den letzten Wert (oder konfigurierbare Instanz).
@@ -264,10 +271,10 @@ class VictronVrmAdapter extends utils.Adapter {
         try {
             const now = nowUnix();
             const periods = [
-                { suffix: 'Today',     start: dayStart(0),   end: now },
-                { suffix: 'ThisWeek',  start: weekStart(),   end: now },
-                { suffix: 'ThisMonth', start: monthStart(),  end: now },
-                { suffix: 'ThisYear',  start: yearStart(),   end: now },
+                { suffix: 'Today',     start: dayStart(0),  end: now },
+                { suffix: 'ThisWeek',  start: weekStart(),  end: now },
+                { suffix: 'ThisMonth', start: monthStart(), end: now },
+                { suffix: 'ThisYear',  start: yearStart(),  end: now },
             ];
 
             for (const period of periods) {
@@ -279,14 +286,24 @@ class VictronVrmAdapter extends utils.Adapter {
                     continue;
                 }
 
-                // Totals aus der API-Antwort
-                const totals = data.totals || {};
+                // VRM API gibt Stats in verschiedenen Strukturen zurück:
+                // data.totals{}          → Summen-Objekt (bevorzugt)
+                // data.records{}         → flaches Objekt
+                // data.records[].totals  → Array-Element mit totals
+                const totals  = data.totals  || {};
                 const records = data.records || {};
+
+                // Auch aus Array-Format extrahieren
+                const arrTotals = Array.isArray(records)
+                    ? Object.assign({}, ...(records.map(r => r.totals || {})))
+                    : {};
 
                 for (const stat of OVERALL_STAT_KEYS) {
                     const stateId = `${stat.id}${period.suffix}`;
-                    // Wert kann in totals oder records sein
-                    let val = totals[stat.key] ?? records[stat.key] ?? null;
+                    let val = totals[stat.key]
+                           ?? records[stat.key]
+                           ?? arrTotals[stat.key]
+                           ?? null;
                     if (val !== null) {
                         val = typeof val === 'number' ? Math.round(val * 100) / 100 : val;
                         await this.setStateAsync(stateId, { val, ack: true });
