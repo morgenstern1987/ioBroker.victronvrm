@@ -100,5 +100,3 @@ Bei Standard-Einstellungen (30s/300s) bleibt der Adapter weit unter dem Limit.
 
 ---
 
-## Lizenz
-MIT
