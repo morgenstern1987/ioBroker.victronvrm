@@ -1,0 +1,54 @@
+{
+  "common": {
+    "name": "victronvrm",
+    "version": "0.3.0",
+    "news": {
+      "0.3.0": { "en": "111 sensors with exact VRM IDs, Overall Stats per period, calculated values", "de": "111 Sensoren mit exakten VRM-IDs, Overall-Stats pro Zeitraum, berechnete Werte" },
+      "0.2.0": { "en": "Full VRM API v2 with access token auth", "de": "Vollständige VRM API v2 mit Access-Token" },
+      "0.1.0": { "en": "Initial release", "de": "Erstveröffentlichung" }
+    },
+    "title": "Victron VRM",
+    "titleLang": { "en": "Victron VRM Portal", "de": "Victron VRM Portal" },
+    "desc": {
+      "en": "111 sensors from Victron VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (5), Overall Stats (20)",
+      "de": "111 Sensoren aus der Victron VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (5), Overall Stats (20)"
+    },
+    "authors": ["ioBroker User"],
+    "keywords": ["victron", "vrm", "solar", "pv", "battery", "energy", "ess", "multiplus"],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "admin/victronvrm.png",
+    "enabled": true,
+    "mode": "daemon",
+    "type": "energy",
+    "adminUI": { "config": "json" },
+    "dependencies": [{ "js-controller": ">=3.3.0" }],
+    "loglevel": "info"
+  },
+  "native": {
+    "accessToken":    "",
+    "idSite":         "",
+    "pollInterval":   30,
+    "statsInterval":  300
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": { "name": "Information" },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "name": "VRM API verbunden",
+        "type": "boolean", "role": "indicator.connected",
+        "read": true, "write": false, "def": false
+      },
+      "native": {}
+    }
+  ]
+}
