@@ -1,0 +1,151 @@
+{
+  "common": {
+    "name": "victronvrm",
+    "version": "0.3.1",
+    "news": {
+      "0.3.1": {
+        "en": "Fix: /installations/{id} returns 400; fix stats interval parameter",
+        "de": "Fix: /installations/{id} liefert 400; Stats-Intervall korrigiert",
+        "ru": "Исправление: /installations/{id} возвращает 400; исправлен параметр интервала статистики",
+        "pt": "Correção: /installations/{id} retorna 400; parâmetro de intervalo de estatísticas corrigido",
+        "nl": "Fix: /installations/{id} geeft 400; statistieken interval parameter gecorrigeerd",
+        "fr": "Correction: /installations/{id} renvoie 400; paramètre d'intervalle des statistiques corrigé",
+        "it": "Fix: /installations/{id} restituisce 400; parametro intervallo statistiche corretto",
+        "es": "Corrección: /installations/{id} devuelve 400; parámetro de intervalo de estadísticas corregido",
+        "pl": "Poprawka: /installations/{id} zwraca 400; naprawiono parametr interwału statystyk",
+        "uk": "Виправлення: /installations/{id} повертає 400; виправлено параметр інтервалу статистики",
+        "zh-cn": "修复: /installations/{id} 返回400; 修复统计间隔参数"
+      },
+      "0.3.0": {
+        "en": "111 sensors with exact VRM IDs, Overall Stats per period, calculated values",
+        "de": "111 Sensoren mit exakten VRM-IDs, Overall-Stats pro Zeitraum, berechnete Werte",
+        "ru": "111 датчиков с точными VRM ID, общая статистика по периодам, расчётные значения",
+        "pt": "111 sensores com IDs VRM exatos, estatísticas gerais por período, valores calculados",
+        "nl": "111 sensoren met exacte VRM IDs, algemene statistieken per periode, berekende waarden",
+        "fr": "111 capteurs avec IDs VRM exacts, statistiques globales par période, valeurs calculées",
+        "it": "111 sensori con ID VRM esatti, statistiche generali per periodo, valori calcolati",
+        "es": "111 sensores con IDs VRM exactos, estadísticas generales por período, valores calculados",
+        "pl": "111 czujników z dokładnymi ID VRM, statystyki ogólne na okres, wartości obliczone",
+        "uk": "111 датчиків з точними VRM ID, загальна статистика за period, розраховані значення",
+        "zh-cn": "111个传感器带精确VRM ID，每期总体统计，计算值"
+      },
+      "0.1.0": {
+        "en": "Initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Первый выпуск",
+        "pt": "Lançamento inicial",
+        "nl": "Eerste release",
+        "fr": "Première version",
+        "it": "Prima versione",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Перший випуск",
+        "zh-cn": "初始版本"
+      }
+    },
+    "titleLang": {
+      "en": "Victron VRM Portal",
+      "de": "Victron VRM Portal",
+      "ru": "Victron VRM Портал",
+      "pt": "Portal Victron VRM",
+      "nl": "Victron VRM Portaal",
+      "fr": "Portail Victron VRM",
+      "it": "Portale Victron VRM",
+      "es": "Portal Victron VRM",
+      "pl": "Portal Victron VRM",
+      "uk": "Портал Victron VRM",
+      "zh-cn": "Victron VRM 门户"
+    },
+    "desc": {
+      "en": "111 sensors from Victron VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (5), Overall Stats (20)",
+      "de": "111 Sensoren aus der Victron VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (5), Overall Stats (20)",
+      "ru": "111 датчиков из Victron VRM API v2: Батарея (34), MultiPlus (12), Сеть (10), PV-инвертор (17), Резервуар (6), Солнечный зарядник (7), Обзор системы (5), Общая статистика (20)",
+      "pt": "111 sensores da API VRM Victron v2: Bateria (34), MultiPlus (12), Rede (10), Inversor FV (17), Tanque (6), Carregador Solar (7), Visão Geral do Sistema (5), Estatísticas Gerais (20)",
+      "nl": "111 sensoren van Victron VRM API v2: Batterij (34), MultiPlus (12), Net (10), PV-omvormer (17), Tank (6), Zonnelader (7), Systeemoverzicht (5), Algemene statistieken (20)",
+      "fr": "111 capteurs de l'API VRM Victron v2: Batterie (34), MultiPlus (12), Réseau (10), Onduleur PV (17), Réservoir (6), Chargeur solaire (7), Vue d'ensemble du système (5), Statistiques globales (20)",
+      "it": "111 sensori dall'API VRM Victron v2: Batteria (34), MultiPlus (12), Rete (10), Inverter FV (17), Serbatoio (6), Caricatore solare (7), Panoramica sistema (5), Statistiche generali (20)",
+      "es": "111 sensores de la API VRM Victron v2: Batería (34), MultiPlus (12), Red (10), Inversor FV (17), Depósito (6), Cargador solar (7), Resumen del sistema (5), Estadísticas generales (20)",
+      "pl": "111 czujników z Victron VRM API v2: Bateria (34), MultiPlus (12), Sieć (10), Falownik PV (17), Zbiornik (6), Ładowarka solarna (7), Przegląd systemu (5), Ogólne statystyki (20)",
+      "uk": "111 датчиків з Victron VRM API v2: Батарея (34), MultiPlus (12), Мережа (10), PV-інвертор (17), Резервуар (6), Сонячний зарядний пристрій (7), Огляд системи (5), Загальна статистика (20)",
+      "zh-cn": "来自Victron VRM API v2的111个传感器：电池(34)、MultiPlus(12)、电网(10)、光伏逆变器(17)、水箱(6)、太阳能充电器(7)、系统概览(5)、总体统计(20)"
+    },
+    "authors": [
+      {
+        "name": "morgenstern1987",
+        "email": "iobroker@example.com"
+      }
+    ],
+    "keywords": ["victron", "vrm", "solar", "pv", "battery", "energy", "ess", "multiplus"],
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "platform": "Javascript/Node.js",
+    "extIcon": "https://raw.githubusercontent.com/morgenstern1987/ioBroker.victronvrm/main/admin/victronvrm.png",
+    "icon": "admin/victronvrm.png",
+    "enabled": true,
+    "mode": "daemon",
+    "compact": true,
+    "type": "energy",
+    "tier": 3,
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.19"
+      }
+    ],
+    "globalDependencies": [],
+    "nodeVersion": ">=18",
+    "loglevel": "info",
+    "readme": "https://github.com/morgenstern1987/ioBroker.victronvrm/blob/main/README.md",
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "messagebox": false,
+    "supportCustoms": false,
+    "allowInit": false
+  },
+  "native": {
+    "accessToken": "",
+    "idSite": "",
+    "pollInterval": 30,
+    "statsInterval": 300
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Connected to VRM API",
+          "de": "Mit VRM API verbunden",
+          "ru": "Подключено к VRM API",
+          "pt": "Conectado à API VRM",
+          "nl": "Verbonden met VRM API",
+          "fr": "Connecté à l'API VRM",
+          "it": "Connesso all'API VRM",
+          "es": "Conectado a la API VRM",
+          "pl": "Połączono z API VRM",
+          "uk": "Підключено до VRM API",
+          "zh-cn": "已连接到VRM API"
+        },
+        "type": "boolean",
+        "role": "indicator.connected",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
+}
