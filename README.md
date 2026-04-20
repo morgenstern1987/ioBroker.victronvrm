@@ -3,8 +3,7 @@
 # ioBroker.victronvrm
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.1.0 (2026-04-20)
 
 <p align="center">
   <strong>ioBroker-Adapter für das Victron Energy VRM Portal</strong><br>
