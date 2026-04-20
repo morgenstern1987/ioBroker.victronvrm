@@ -17,7 +17,7 @@
 
 ## ✨ Features
 
-- **111 Datenpunkte** aus allen Victron-Geräten
+- **111 Datenpunkte** aus allen Victron-Geräten – identische Sensor-Abdeckung wie der populäre [hass-victron-vrm-api](https://github.com/jayjojayson/hass-victron-vrm-api) Home Assistant Adapter
 - **Kein lokaler Zugriff nötig** – funktioniert auch für mobile Systeme (Wohnmobil, Boot, Fahrzeug)
 - **Sicherer Access Token** – kein Benutzername/Passwort im Adapter gespeichert
 - **Berechnete Werte** direkt im Adapter (Leistung, Zellspannungsdifferenz, PV-Gesamtertrag …)
@@ -323,6 +323,7 @@ iobroker.victronvrm/
 | 🌐 VRM Portal | [vrm.victronenergy.com](https://vrm.victronenergy.com) |
 | 🔑 Access Token erstellen | [vrm.victronenergy.com/access-tokens](https://vrm.victronenergy.com/access-tokens) |
 | 📖 VRM API Dokumentation | [vrm-api-docs.victronenergy.com](https://vrm-api-docs.victronenergy.com/) |
+| 🏠 Referenz HA-Adapter | [github.com/jayjojayson/hass-victron-vrm-api](https://github.com/jayjojayson/hass-victron-vrm-api) |
 | 💬 Victron Community | [community.victronenergy.com](https://community.victronenergy.com) |
 
 ---
