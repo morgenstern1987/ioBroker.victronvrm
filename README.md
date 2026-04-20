@@ -1,8 +1,7 @@
 # ioBroker.victronvrm
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.4.1 (2026-04-20)
 
 
 <p align="center">
