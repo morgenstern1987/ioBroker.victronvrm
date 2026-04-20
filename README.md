@@ -8,6 +8,7 @@
 <p align="center">
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
+  <img src="https://img.shields.io/badge/Version-1.0.1-blue" alt="Version"/>
   <img src="https://img.shields.io/badge/Sensoren-111-brightgreen" alt="111 Sensoren"/>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
 </p>

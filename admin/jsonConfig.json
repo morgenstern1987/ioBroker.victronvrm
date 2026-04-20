@@ -44,14 +44,18 @@
       "type": "number",
       "label": "Diagnostics-Intervall (Sekunden)",
       "help": "Alle Sensor-Werte (Battery, MultiPlus, Grid, PV, Solar…). Min: 10s. Rate-Limit: ~3 req/s.",
-      "min": 10, "max": 3600, "def": 30
+      "min": 10,
+      "max": 3600,
+      "default": 30
     },
     "statsInterval": {
       "newLine": true,
       "type": "number",
       "label": "Overall-Stats Intervall (Sekunden)",
       "help": "Ertrag/Verbrauch für Heute, Woche, Monat, Jahr. Empfehlung: 300s (5 Min).",
-      "min": 60, "max": 86400, "def": 300
+      "min": 60,
+      "max": 86400,
+      "default": 300
     },
 
     "_hint": {
