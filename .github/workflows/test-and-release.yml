@@ -10,6 +10,10 @@ on:
       - main
       - master
 
+# Force all GitHub Actions (checkout, setup-node, etc.) to run on Node.js 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # ── Package file tests ────────────────────────────────────────────────────────
   test-package:
