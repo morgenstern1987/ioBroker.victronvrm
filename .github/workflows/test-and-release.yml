@@ -9,6 +9,12 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release type (patch, minor, major) – only used for documentation'
+        required: false
+        default: 'patch'
 
 # Force all GitHub Actions (checkout, setup-node, etc.) to run on Node.js 24
 env:
@@ -57,13 +63,15 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-  # ── Release (only on push to main with release tag) ──────────────────────────
+  # ── Release (on release commit OR manual dispatch on main) ───────────────────
   release:
     needs: [test-package, test-unit, lint]
     runs-on: ubuntu-latest
     if: |
-      github.ref == 'refs/heads/main' &&
-      startsWith(github.event.head_commit.message, 'chore: release v')
+      github.ref == 'refs/heads/main' && (
+        startsWith(github.event.head_commit.message, 'chore: release v') ||
+        github.event_name == 'workflow_dispatch'
+      )
     steps:
       - uses: actions/checkout@v4
         with:
