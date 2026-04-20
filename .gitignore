@@ -4,3 +4,4 @@ npm-debug.log
 *.tgz
 .create-adapter.json
 iob_npm.done
+# package-lock.json should be committed to git
