@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "news": {
+      "1.4.1": {
+        "en": "Minor improvements",
+        "de": "Kleinere Verbesserungen"
+      },
       "1.3.0": {
         "en": "Minor improvements",
         "de": "Kleinere Verbesserungen"
