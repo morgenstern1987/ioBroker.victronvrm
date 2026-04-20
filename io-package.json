@@ -1,8 +1,29 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.0.1",
+    "version": "1.4.1",
     "news": {
+      "1.4.1": {
+        "en": "Minor improvements",
+        "de": "Kleinere Verbesserungen"
+      },
+      "1.3.0": {
+        "en": "Minor improvements",
+        "de": "Kleinere Verbesserungen"
+      },
+      "1.1.0": {
+        "en": "Improved stability, fixed release workflow, added .releaseconfig.json for automatic version sync",
+        "de": "Verbesserte Stabilität, Release-Workflow korrigiert, .releaseconfig.json für automatische Versionssynchronisation hinzugefügt",
+        "ru": "Улучшена стабильность, исправлен рабочий процесс выпуска",
+        "pt": "Estabilidade melhorada, fluxo de trabalho de lançamento corrigido",
+        "nl": "Verbeterde stabiliteit, release-workflow gecorrigeerd",
+        "fr": "Stabilité améliorée, flux de travail de publication corrigé",
+        "it": "Stabilità migliorata, flusso di lavoro di rilascio corretto",
+        "es": "Estabilidad mejorada, flujo de trabajo de lanzamiento corregido",
+        "pl": "Poprawiona stabilność, naprawiono przepływ pracy wydania",
+        "uk": "Покращена стабільність, виправлено робочий процес випуску",
+        "zh-cn": "提高稳定性，修复发布工作流程"
+      },
       "1.0.1": {
         "en": "First stable release: 111 sensors, i18n, correct project structure",
         "de": "Erstes stabiles Release: 111 Sensoren, i18n, korrekte Projektstruktur",
@@ -75,7 +96,16 @@
         "email": "iobroker@example.com"
       }
     ],
-    "keywords": ["victron", "vrm", "solar", "pv", "battery", "energy", "ess", "multiplus"],
+    "keywords": [
+      "victron",
+      "vrm",
+      "solar",
+      "pv",
+      "battery",
+      "energy",
+      "ess",
+      "multiplus"
+    ],
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -105,8 +135,12 @@
     "messagebox": false,
     "supportCustoms": false,
     "allowInit": false,
-    "encryptedNative": ["accessToken"],
-    "protectedNative": ["accessToken"]
+    "encryptedNative": [
+      "accessToken"
+    ],
+    "protectedNative": [
+      "accessToken"
+    ]
   },
   "native": {
     "accessToken": "",

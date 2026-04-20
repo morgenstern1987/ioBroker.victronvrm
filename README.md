@@ -1,5 +1,9 @@
 # ioBroker.victronvrm
 
+## Changelog
+### 1.4.1 (2026-04-20)
+
+
 <p align="center">
   <strong>ioBroker-Adapter für das Victron Energy VRM Portal</strong><br>
   Liest alle Gerätedaten über die offizielle <a href="https://vrm-api-docs.victronenergy.com/">VRM REST API v2</a> – kein lokaler Zugriff auf das GX-Gerät nötig.
