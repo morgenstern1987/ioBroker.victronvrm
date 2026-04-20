@@ -1,0 +1,77 @@
+{
+  "type": "panel",
+  "i18n": true,
+  "items": {
+    "_h_auth": {
+      "type": "staticText",
+      "newLine": true,
+      "text": "Authentication",
+      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "4px" }
+    },
+    "accessToken": {
+      "newLine": true,
+      "type": "password",
+      "label": "Access Token",
+      "tooltip": "Access Token Tooltip"
+    },
+    "_token_link": {
+      "newLine": true,
+      "type": "staticText",
+      "text": "Token Link",
+      "style": { "color": "#1976d2", "fontSize": "13px", "marginBottom": "8px" }
+    },
+
+    "_h_site": {
+      "type": "staticText",
+      "newLine": true,
+      "text": "Installation",
+      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "12px" }
+    },
+    "idSite": {
+      "newLine": true,
+      "type": "text",
+      "label": "Installation ID (idSite)",
+      "tooltip": "Installation ID Tooltip",
+      "validator": "/^[0-9]+$/.test(data.idSite)",
+      "validatorErrorText": "Only numbers allowed"
+    },
+
+    "_h_poll": {
+      "type": "staticText",
+      "newLine": true,
+      "text": "Polling Intervals",
+      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "12px" }
+    },
+    "pollInterval": {
+      "newLine": true,
+      "type": "number",
+      "label": "Diagnostics Interval (seconds)",
+      "tooltip": "Diagnostics Interval Tooltip",
+      "min": 10,
+      "max": 3600,
+      "default": 30
+    },
+    "statsInterval": {
+      "newLine": true,
+      "type": "number",
+      "label": "Overall Stats Interval (seconds)",
+      "tooltip": "Overall Stats Interval Tooltip",
+      "min": 60,
+      "max": 86400,
+      "default": 300
+    },
+
+    "_rate_hint": {
+      "newLine": true,
+      "type": "staticText",
+      "text": "Rate Limit Info",
+      "style": { "color": "#888", "fontSize": "12px", "marginTop": "12px" }
+    },
+    "_sensor_info": {
+      "newLine": true,
+      "type": "staticText",
+      "text": "Sensor Count Info",
+      "style": { "color": "#555", "fontSize": "12px", "marginTop": "4px" }
+    }
+  }
+}

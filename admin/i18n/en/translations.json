@@ -1,0 +1,16 @@
+{
+  "Access Token": "Access Token",
+  "Access Token Tooltip": "Create at: https://vrm.victronenergy.com/access-tokens",
+  "Installation ID (idSite)": "Installation ID (idSite)",
+  "Installation ID Tooltip": "Number from VRM URL: https://vrm.victronenergy.com/installation/123456/",
+  "Diagnostics Interval (seconds)": "Diagnostics Interval (seconds)",
+  "Diagnostics Interval Tooltip": "How often all sensor values are polled (Battery, MultiPlus, Grid, PV, Solar...). Min: 10s.",
+  "Overall Stats Interval (seconds)": "Overall Stats Interval (seconds)",
+  "Overall Stats Interval Tooltip": "How often energy totals (today/week/month/year) are updated. Recommendation: 300s.",
+  "Authentication": "Authentication",
+  "Installation": "Installation",
+  "Polling Intervals": "Polling Intervals",
+  "Rate Limit Info": "Rate limit: max. ~3 requests/second. At default settings (30s interval) well within limits.",
+  "Sensor Count Info": "Sensors: Battery (34) · MultiPlus (12) · Grid (10) · PV Inverter (17) · Tank (6) · Solar Charger (7) · System (5) · Overall Stats (20) = 111 data points",
+  "Token Link": "Create Access Token directly: https://vrm.victronenergy.com/access-tokens"
+}
