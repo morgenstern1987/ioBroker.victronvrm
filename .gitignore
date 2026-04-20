@@ -4,4 +4,6 @@ npm-debug.log
 *.tgz
 .create-adapter.json
 iob_npm.done
-# package-lock.json should be committed to git
+# Generate locally with: npm install
+# Commit it afterwards if you want reproducible installs via npm ci
+# package-lock.json
