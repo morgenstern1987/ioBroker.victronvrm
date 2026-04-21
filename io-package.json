@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "news": {
+      "1.4.3": {
+        "en": "",
+        "de": "",
+        "ru": "",
+        "pt": "",
+        "nl": "",
+        "fr": "",
+        "it": "",
+        "es": "",
+        "pl": "",
+        "uk": "",
+        "zh-cn": ""
+      },
       "1.4.2": {
         "en": "Fix: correct /overallstats endpoint, two-letter API codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), period keys (today/week/month/year), populate string-vrmId sensors from overallstats, fix meta.siteName/timezone/country (getMe response), fix batteryLifeState unit",
         "de": "Fix: korrekter /overallstats Endpunkt, Zwei-Buchstaben API-Codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), Perioden-Keys (today/week/month/year), String-vrmId Sensoren aus overallstats befüllt, meta.siteName/timezone/country behoben, batteryLifeState Einheit korrigiert",

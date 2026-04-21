@@ -16,8 +16,7 @@
 ---
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.4.3 (2026-04-21)
 - (no changes yet)
 
 ### 1.4.2 (2026-04-21)
