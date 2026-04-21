@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "news": {
+      "1.4.3": {
+        "en": "Docs: added GX device log interval explanation (set to 1 min for best update frequency); changed default diagnostics polling interval from 30s to 60s",
+        "de": "Doku: Erklärung zum GX-Protokollierungsintervall hinzugefügt (auf 1 min setzen für beste Aktualisierungsrate); Standard-Diagnose-Intervall von 30s auf 60s geändert",
+        "ru": "Документация: добавлено объяснение интервала журнала GX (установите 1 мин для лучшей частоты обновления); интервал опроса по умолчанию изменён с 30с на 60с",
+        "pt": "Docs: explicação do intervalo de log do GX adicionada (definir para 1 min para melhor frequência de atualização); intervalo de diagnóstico padrão alterado de 30s para 60s",
+        "nl": "Docs: uitleg GX log interval toegevoegd (stel in op 1 min voor beste updatefrequentie); standaard diagnose-interval gewijzigd van 30s naar 60s",
+        "fr": "Docs: explication de l'intervalle de journal GX ajoutée (régler sur 1 min pour la meilleure fréquence de mise à jour); intervalle de diagnostic par défaut changé de 30s à 60s",
+        "it": "Docs: aggiunta spiegazione intervallo log GX (impostare a 1 min per la migliore frequenza di aggiornamento); intervallo diagnostica predefinito cambiato da 30s a 60s",
+        "es": "Docs: explicación del intervalo de registro GX añadida (establecer en 1 min para mejor frecuencia de actualización); intervalo de diagnóstico predeterminado cambiado de 30s a 60s",
+        "pl": "Docs: dodano wyjaśnienie interwału dziennika GX (ustaw na 1 min dla najlepszej częstotliwości aktualizacji); domyślny interwał diagnostyki zmieniony z 30s na 60s",
+        "uk": "Документація: додано пояснення інтервалу журналу GX (встановіть 1 хв для найкращої частоти оновлення); інтервал діагностики за замовчуванням змінено з 30с на 60с",
+        "zh-cn": "文档：添加GX设备日志间隔说明（设置为1分钟以获得最佳更新频率）；默认诊断轮询间隔从30秒更改为60秒"
+      },
       "1.4.2": {
         "en": "Fix: correct /overallstats endpoint, two-letter API codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), period keys (today/week/month/year), populate string-vrmId sensors from overallstats, fix meta.siteName/timezone/country (getMe response), fix batteryLifeState unit",
         "de": "Fix: korrekter /overallstats Endpunkt, Zwei-Buchstaben API-Codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), Perioden-Keys (today/week/month/year), String-vrmId Sensoren aus overallstats befüllt, meta.siteName/timezone/country behoben, batteryLifeState Einheit korrigiert",
