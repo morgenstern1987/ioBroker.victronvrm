@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
-  <img src="https://img.shields.io/badge/Version-1.4.2-blue" alt="Version"/>
+  <img src="https://img.shields.io/badge/Version-1.4.3-blue" alt="Version"/>
   <img src="https://img.shields.io/badge/Sensors-111-brightgreen" alt="111 Sensors"/>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
 </p>
@@ -19,6 +19,10 @@
 
 ### **WORK IN PROGRESS**
 - (no changes yet)
+
+### 1.4.3 (2026-04-21)
+- Docs: added GX device log interval explanation (set to 1 min for best update frequency)
+- Changed default diagnostics polling interval from 30s to 60s
 
 ### 1.4.2 (2026-04-21)
 - Fix: correct `/overallstats` endpoint (previously `/stats?type=kwh` always returned empty arrays)
@@ -80,8 +84,20 @@ iobroker add victronvrm
 |-------|-------------|
 | **Personal Access Token** | Create at: [vrm.victronenergy.com/access-tokens](https://vrm.victronenergy.com/access-tokens) |
 | **Installation ID (idSite)** | Number from VRM URL: `https://vrm.victronenergy.com/installation/`**`123456`**`/` |
-| **Diagnostics Interval** | All sensor values (default: 30s, min: 10s) |
+| **Diagnostics Interval** | How often the adapter polls the VRM API (default: 30s, min: 10s) |
 | **Overall Stats Interval** | Energy totals today/week/month/year (default: 300s) |
+
+### ⚠️ Important: GX Device Log Interval
+
+The VRM API (`/diagnostics`) only serves data as fresh as the **log interval configured on your GX device**. No matter how often the adapter polls, values will not update more frequently than that interval.
+
+**To get the most frequent updates possible, set the log interval on your GX device to 1 minute:**
+
+```
+GX Device → Settings → VRM Online Portal → Log interval → 1 min
+```
+
+With this setting, sensor values in ioBroker will update approximately **every 60 seconds** – regardless of a shorter adapter polling interval. Setting the adapter diagnostics interval below 60 seconds therefore provides no benefit and only wastes API calls.
 
 ---
 
