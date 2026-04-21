@@ -1,15 +1,20 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "news": {
-      "1.4.1": {
-        "en": "Minor improvements",
-        "de": "Kleinere Verbesserungen"
-      },
-      "1.3.0": {
-        "en": "Minor improvements",
-        "de": "Kleinere Verbesserungen"
+      "1.4.2": {
+        "en": "Fix: correct /overallstats endpoint, two-letter API codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), period keys (today/week/month/year), populate string-vrmId sensors from overallstats, fix meta.siteName/timezone/country (getMe response), fix batteryLifeState unit",
+        "de": "Fix: korrekter /overallstats Endpunkt, Zwei-Buchstaben API-Codes (Pc/Pb/Pg/Gc/Gb/Bc/Bg), Perioden-Keys (today/week/month/year), String-vrmId Sensoren aus overallstats befüllt, meta.siteName/timezone/country behoben, batteryLifeState Einheit korrigiert",
+        "ru": "Исправление: корректный endpoint /overallstats, двухбуквенные коды API, ключи периодов, meta.siteName исправлен, единица batteryLifeState исправлена",
+        "pt": "Correção: endpoint /overallstats correto, códigos API de duas letras, chaves de período, meta.siteName corrigido, unidade batteryLifeState corrigida",
+        "nl": "Fix: correct /overallstats endpoint, twee-letter API codes, periode sleutels, meta.siteName gecorrigeerd, batteryLifeState eenheid gecorrigeerd",
+        "fr": "Correction: endpoint /overallstats correct, codes API deux lettres, clés de période, meta.siteName corrigé, unité batteryLifeState corrigée",
+        "it": "Fix: endpoint /overallstats corretto, codici API due lettere, chiavi periodo, meta.siteName corretto, unità batteryLifeState corretta",
+        "es": "Corrección: endpoint /overallstats correcto, códigos API dos letras, claves de período, meta.siteName corregido, unidad batteryLifeState corregida",
+        "pl": "Poprawka: poprawny endpoint /overallstats, kody API dwie litery, klucze okresu, meta.siteName poprawiony, jednostka batteryLifeState poprawiona",
+        "uk": "Виправлення: правильний endpoint /overallstats, двобуквені коди API, ключі періодів, meta.siteName виправлено, одиниця batteryLifeState виправлена",
+        "zh-cn": "修复：正确的/overallstats端点，两字母API代码，周期键，meta.siteName修复，batteryLifeState单位修复"
       },
       "1.1.0": {
         "en": "Improved stability, fixed release workflow, added .releaseconfig.json for automatic version sync",
