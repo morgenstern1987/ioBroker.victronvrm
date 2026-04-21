@@ -150,7 +150,7 @@
   "native": {
     "accessToken": "",
     "idSite": "",
-    "pollInterval": 30,
+    "pollInterval": 60,
     "statsInterval": 300
   },
   "objects": [],

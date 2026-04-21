@@ -80,8 +80,20 @@ iobroker add victronvrm
 |-------|-------------|
 | **Personal Access Token** | Create at: [vrm.victronenergy.com/access-tokens](https://vrm.victronenergy.com/access-tokens) |
 | **Installation ID (idSite)** | Number from VRM URL: `https://vrm.victronenergy.com/installation/`**`123456`**`/` |
-| **Diagnostics Interval** | All sensor values (default: 30s, min: 10s) |
+| **Diagnostics Interval** | How often the adapter polls the VRM API (default: 30s, min: 10s) |
 | **Overall Stats Interval** | Energy totals today/week/month/year (default: 300s) |
+
+### ⚠️ Important: GX Device Log Interval
+
+The VRM API (`/diagnostics`) only serves data as fresh as the **log interval configured on your GX device**. No matter how often the adapter polls, values will not update more frequently than that interval.
+
+**To get the most frequent updates possible, set the log interval on your GX device to 1 minute:**
+
+```
+GX Device → Settings → VRM Online Portal → Log interval → 1 min
+```
+
+With this setting, sensor values in ioBroker will update approximately **every 60 seconds** – regardless of a shorter adapter polling interval. Setting the adapter diagnostics interval below 60 seconds therefore provides no benefit and only wastes API calls.
 
 ---
 
