@@ -228,35 +228,55 @@ class VictronVrmAdapter extends utils.Adapter {
 
  async _pollStats() {
  try {
- const now = Math.floor(Date.now() / 1000);
+ // Single call to /overallstats returns all periods at once.
+ // Response: { records: { today: {totals: {Pc, Pb, ...}}, week: {...}, month: {...}, year: {...} } }
+ const data = await this.api.getOverallStats(this.idSite);
+
+ // Map API period keys to our state suffixes
+ // API returns records.today / records.week / records.month / records.year
  const periods = [
- { suffix: 'Today', start: this._dayStart(0), end: now },
- { suffix: 'ThisWeek', start: this._weekStart(), end: now },
- { suffix: 'ThisMonth', start: this._monthStart(), end: now },
- { suffix: 'ThisYear', start: this._yearStart(), end: now },
+ { apiKey: 'today', suffix: 'Today', isToday: true },
+ { apiKey: 'week', suffix: 'ThisWeek', isToday: false },
+ { apiKey: 'month', suffix: 'ThisMonth', isToday: false },
+ { apiKey: 'year', suffix: 'ThisYear', isToday: false },
  ];
 
  for (const period of periods) {
- let data;
- try {
- data = await this.api.getOverallStats(this.idSite, period.start, period.end);
- } catch (err) {
- this.log.warn(`Overall stats (${period.suffix}) failed: ${err.message}`);
+ const periodData = (data.records || {})[period.apiKey];
+ if (!periodData) {
+ this.log.warn(`Overall stats: no data for period "${period.apiKey}"`);
  continue;
  }
-
- const totals = data.totals || {};
- const records = data.records || {};
- const arrTotals = Array.isArray(records)
- ? Object.assign({}, ...(records.map(r => r.totals || {})))
- : {};
+ const totals = periodData.totals || {};
 
  for (const stat of OVERALL_STAT_KEYS) {
- const stateId = `${stat.id}${period.suffix}`;
- let val = totals[stat.key] ?? records[stat.key] ?? arrTotals[stat.key] ?? null;
+ const val = totals[stat.key] ?? null;
  if (val !== null) {
- val = typeof val === 'number' ? Math.round(val * 100) / 100 : val;
- await this.setStateAsync(stateId, { val, ack: true });
+ await this.setStateAsync(`${stat.id}${period.suffix}`, {
+ val: Math.round(val * 100) / 100, ack: true,
+ });
+ }
+ }
+
+ // For the Today period: populate device sensors with string vrmIds (Bc, Bg, Gc, Gb, Pc, Pb, Pg).
+ // The diagnostics endpoint only carries numeric attribute IDs.
+ if (period.isToday) {
+ for (const sensor of ALL_SENSORS) {
+ if (typeof sensor.vrmId === 'string') {
+ const raw = totals[sensor.vrmId] ?? null;
+ if (raw !== null) {
+ await this.setStateAsync(sensor.id, {
+ val: Math.round(raw * 100) / 100, ack: true,
+ });
+ }
+ } else if (sensor.vrmId === null && sensor.calc) {
+ // pvInverter.totalYieldToday uses Pc/Pb/Pg from stats totals.
+ // Other calc sensors use numeric keys and safely return null here.
+ const calcResult = sensor.calc(totals);
+ if (calcResult !== null) {
+ await this.setStateAsync(sensor.id, { val: calcResult, ack: true });
+ }
+ }
  }
  }
  }
@@ -301,32 +321,6 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Time helpers ──────────────────────────────────────────────────────────
-
- _dayStart(daysAgo = 0) {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - daysAgo);
- return Math.floor(d.getTime() / 1000);
- }
-
- _weekStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
- return Math.floor(d.getTime() / 1000);
- }
-
- _monthStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(1);
- return Math.floor(d.getTime() / 1000);
- }
-
- _yearStart() {
- return Math.floor(new Date(Date.UTC(new Date().getUTCFullYear(), 0, 1)).getTime() / 1000);
- }
 }
 
 // ─── Compact mode support (guide requirement) ─────────────────────────────────

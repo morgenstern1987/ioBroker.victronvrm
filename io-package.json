@@ -78,8 +78,8 @@
       "zh-cn": "Victron VRM 门户"
     },
     "desc": {
-      "en": "Reads data from Victron Energy VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (5), Overall Stats (20) = 111 sensors total",
-      "de": "Liest Daten aus der Victron Energy VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (5), Overall Stats (20) = 111 Sensoren",
+      "en": "Reads data from Victron Energy VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (4), Overall Stats (28) = 118 sensors total",
+      "de": "Liest Daten aus der Victron Energy VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (4), Overall Stats (28) = 118 Sensoren",
       "ru": "Считывает данные из Victron Energy VRM API v2: Батарея (34), MultiPlus (12), Сеть (10), PV-инвертор (17), Резервуар (6), Солнечный зарядник (7), Система (5), Общая статистика (20) = 111 датчиков",
       "pt": "Lê dados da API VRM Victron Energy v2: Bateria (34), MultiPlus (12), Rede (10), Inversor FV (17), Tanque (6), Carregador Solar (7), Sistema (5), Estatísticas (20) = 111 sensores",
       "nl": "Leest gegevens van Victron Energy VRM API v2: Batterij (34), MultiPlus (12), Net (10), PV-omvormer (17), Tank (6), Zonnelader (7), Systeem (5), Statistieken (20) = 111 sensoren",
