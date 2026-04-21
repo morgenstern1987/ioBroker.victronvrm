@@ -47,7 +47,6 @@ class VictronVrmAdapter extends utils.Adapter {
  // ── Lifecycle ─────────────────────────────────────────────────────────────
 
  async onReady() {
- // Mark as disconnected until first successful poll
  await this.setStateAsync('info.connection', { val: false, ack: true });
 
  const cfg = this.config;
@@ -67,20 +66,32 @@ class VictronVrmAdapter extends utils.Adapter {
  const diagSecs = Math.max(10, parseInt(cfg.pollInterval, 10) || 30);
  const statsSecs = Math.max(60, parseInt(cfg.statsInterval, 10) || 300);
 
- // Build object tree (all intermediate objects explicitly!)
+ // Build object tree
  await this._ensureObjects();
 
  // Load installation metadata once
  await this._loadInstallationMeta();
 
- // First poll immediately
+ // First diagnostics poll immediately
  await this._pollDiagnostics();
- await this._pollStats();
 
- // Start timers (guide: use adapter.setInterval, not setInterval)
+ // Stats poll delayed by 5s to avoid rate limiting on startup
+ // (especially important in Docker where latency is higher)
+ this._timerStats = this.setTimeout(async() => {
+ await this._pollStats();
+ // After first stats poll, set up regular interval
+ this._timerStats = this.setInterval(() => this._pollStats(), statsSecs * 1000);
+ }, 5000);
+
+ // Start diagnostics timer
  this.log.info(`Diagnostics polling every ${diagSecs}s, stats every ${statsSecs}s (idSite=${this.idSite})`);
  this._timerDiag = this.setInterval(() => this._pollDiagnostics(), diagSecs * 1000);
- this._timerStats = this.setInterval(() => this._pollStats(), statsSecs * 1000);
+ }
+
+ // ── Helper: sleep ─────────────────────────────────────────────────────────
+
+ _sleep(ms) {
+ return new Promise(resolve => this.setTimeout(resolve, ms));
  }
 
  // ── Object tree ───────────────────────────────────────────────────────────
@@ -228,37 +239,55 @@ class VictronVrmAdapter extends utils.Adapter {
 
  async _pollStats() {
  try {
- const now = Math.floor(Date.now() / 1000);
- const periods = [
- { suffix: 'Today', start: this._dayStart(0), end: now },
- { suffix: 'ThisWeek', start: this._weekStart(), end: now },
- { suffix: 'ThisMonth', start: this._monthStart(), end: now },
- { suffix: 'ThisYear', start: this._yearStart(), end: now },
- ];
-
- for (const period of periods) {
- let data;
- try {
- data = await this.api.getOverallStats(this.idSite, period.start, period.end);
- } catch (err) {
- this.log.warn(`Overall stats (${period.suffix}) failed: ${err.message}`);
- continue;
- }
-
- const totals = data.totals || {};
+ // Single call returns all periods: today, week, month, year
+ const data = await this.api.getOverallStats(this.idSite);
  const records = data.records || {};
- const arrTotals = Array.isArray(records)
- ? Object.assign({}, ...(records.map(r => r.totals || {})))
- : {};
+
+ for (const period of OVERALL_PERIODS) {
+ // API returns period under keys: today / week / month / year
+ const periodData = records[period.apiKey] || {};
+ const totals = periodData.totals || {};
 
  for (const stat of OVERALL_STAT_KEYS) {
  const stateId = `${stat.id}${period.suffix}`;
- let val = totals[stat.key] ?? records[stat.key] ?? arrTotals[stat.key] ?? null;
+ const val = totals[stat.key] ?? null;
  if (val !== null) {
- val = typeof val === 'number' ? Math.round(val * 100) / 100 : val;
- await this.setStateAsync(stateId, { val, ack: true });
+ await this.setStateAsync(stateId, { val: Math.round(val * 100) / 100, ack: true });
  }
  }
+
+ // Populate string-vrmId sensors (Bc, Bg, Pc, Pb, Pg, Gc, Gb) from today
+ // These have string vrmIds that don't exist in /diagnostics (numeric only)
+ if (period.apiKey === 'today') {
+ const strMap = {
+ 'Bc': 'battery.energyToConsumersToday',
+ 'Bg': 'battery.energyToGridToday',
+ 'Pc': 'pvInverter.energyToConsumersToday',
+ 'Pb': 'pvInverter.energyToBatteryToday',
+ 'Pg': 'pvInverter.energyToGridToday',
+ 'Gc': 'multiplus.energyGridToConsumersToday',
+ 'Gb': 'multiplus.energyGridToBatteryToday',
+ };
+ for (const [code, stateId] of Object.entries(strMap)) {
+ const val = totals[code] ?? null;
+ if (val !== null) {
+ await this.setStateAsync(stateId, { val: Math.round(val * 100) / 100, ack: true });
+ }
+ }
+
+ // Recalculate pvInverter.totalYieldToday from today's totals
+ const pc = totals['Pc'] ?? 0;
+ const pb = totals['Pb'] ?? 0;
+ const pg = totals['Pg'] ?? 0;
+ if (totals['Pc'] !== undefined || totals['Pb'] !== undefined || totals['Pg'] !== undefined) {
+ await this.setStateAsync('pvInverter.totalYieldToday', {
+ val: Math.round((pc + pb + pg) * 100) / 100, ack: true,
+ });
+ }
+ }
+
+ // Small delay between periods to stay within rate limit
+ await this._sleep(500);
  }
 
  await this.setStateAsync('meta.lastStatsUpdate', { val: new Date().toISOString(), ack: true });
@@ -288,13 +317,13 @@ class VictronVrmAdapter extends utils.Adapter {
 
  onUnload(callback) {
  try {
- // Use adapter.clearInterval (not clearInterval) – guide rule
  if (this._timerDiag) this.clearInterval(this._timerDiag);
- if (this._timerStats) this.clearInterval(this._timerStats);
+ if (this._timerStats) {
+ this.clearInterval(this._timerStats);
+ this.clearTimeout(this._timerStats);
+ }
  this._timerDiag = null;
  this._timerStats = null;
-
- // Set connection to false on shutdown
  this.setStateAsync('info.connection', { val: false, ack: true }).finally(callback);
  } catch {
  callback();
