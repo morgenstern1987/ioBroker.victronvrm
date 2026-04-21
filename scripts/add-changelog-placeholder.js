@@ -40,7 +40,7 @@ if (idx === -1) {
 const lineEnd = content.indexOf('\n', idx);
 const insertAt = lineEnd + 1;
 
-content = content.slice(0, insertAt) + '\n' + PLACEHOLDER + '\n' + content.slice(insertAt);
+content = content.slice(0, insertAt) + '\n' + PLACEHOLDER + '\n- (no changes yet)\n' + content.slice(insertAt);
 
 fs.writeFileSync(README, content, 'utf8');
 console.log('✅ Changelog placeholder added to README.md');

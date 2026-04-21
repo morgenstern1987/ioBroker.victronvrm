@@ -77,7 +77,7 @@ class VictronVrmAdapter extends utils.Adapter {
 
  // Stats poll delayed by 5s to avoid rate limiting on startup
  // (especially important in Docker where latency is higher)
- this._timerStats = this.setTimeout(async () => {
+ this._timerStats = this.setTimeout(async() => {
  await this._pollStats();
  // After first stats poll, set up regular interval
  this._timerStats = this.setInterval(() => this._pollStats(), statsSecs * 1000);
