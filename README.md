@@ -18,6 +18,7 @@
 ## Changelog
 
 ### **WORK IN PROGRESS**
+- (no changes yet)
 
 ### 1.4.2 (2026-04-21)
 - Fix: correct `/overallstats` endpoint (previously `/stats?type=kwh` always returned empty arrays)
