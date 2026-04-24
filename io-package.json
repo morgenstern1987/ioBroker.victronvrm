@@ -158,8 +158,7 @@
     ],
     "protectedNative": [
       "accessToken"
-    ],
-    "title": "Victron VRM Portal"
+    ]
   },
   "native": {
     "accessToken": "",
