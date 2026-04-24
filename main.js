@@ -46,7 +46,7 @@ class VictronVrmAdapter extends utils.Adapter {
  this.on('unload', this.onUnload.bind(this));
  }
 
- // ── Lifecycle ─────────────────────────────────────────────────────────────
+ // ── Lifecycle ──
 
  async onReady() {
  await this.setStateAsync('info.connection', { val: false, ack: true });
@@ -90,13 +90,13 @@ class VictronVrmAdapter extends utils.Adapter {
  this._timerDiag = this.setInterval(() => this._pollDiagnostics(), diagSecs * 1000);
  }
 
- // ── Helper: sleep ─────────────────────────────────────────────────────────
+ // ── Helper: sleep ──
 
  _sleep(ms) {
  return new Promise(resolve => this.setTimeout(resolve, ms));
  }
 
- // ── Object tree ───────────────────────────────────────────────────────────
+ // ── Object tree ──
 
  async _ensureObjects() {
  // All channels (intermediate objects must be created explicitly – guide rule!)
@@ -161,7 +161,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Diagnostics poll ──────────────────────────────────────────────────────
+ // ── Diagnostics poll ──
 
  async _pollDiagnostics() {
  try {
@@ -221,7 +221,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Alarms ────────────────────────────────────────────────────────────────
+ // ── Alarms ──
 
  async _pollAlarms() {
  try {
@@ -237,7 +237,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Overall stats ─────────────────────────────────────────────────────────
+ // ── Overall stats ──
 
  async _pollStats() {
  try {
@@ -300,7 +300,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Installation metadata ─────────────────────────────────────────────────
+ // ── Installation metadata ──
 
  async _loadInstallationMeta() {
  try {
@@ -315,7 +315,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Unload (guide: clean up ALL resources) ────────────────────────────────
+ // ── Unload (guide: clean up ALL resources) ──
 
  onUnload(callback) {
  try {
@@ -332,37 +332,39 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Time helpers ──────────────────────────────────────────────────────────
+    // ── Time helpers ──
 
- _dayStart(daysAgo = 0) {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - daysAgo);
- return Math.floor(d.getTime() / 1000);
- }
+    _dayStart(daysAgo = 0) {
+        const d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        d.setUTCDate(d.getUTCDate() - daysAgo);
+        return Math.floor(d.getTime() / 1000);
+    }
 
- _weekStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
- return Math.floor(d.getTime() / 1000);
- }
+    _weekStart() {
+        const d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
+        return Math.floor(d.getTime() / 1000);
+    }
 
- _monthStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(1);
- return Math.floor(d.getTime() / 1000);
- }
+    _monthStart() {
+        const d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        d.setUTCDate(1);
+        return Math.floor(d.getTime() / 1000);
+    }
 
- _yearStart() {
- return Math.floor(new Date(Date.UTC(new Date().getUTCFullYear(), 0, 1)).getTime() / 1000);
- }
+    _yearStart() {
+        return Math.floor(
+            new Date(Date.UTC(new Date().getUTCFullYear(), 0, 1)).getTime() / 1000,
+        );
+    }
 }
 
-// ─── Compact mode support (guide requirement) ─────────────────────────────────
+// ─── Compact mode support (guide requirement) ──
 if (require.main !== module) {
- module.exports = (options) => new VictronVrmAdapter(options);
+    module.exports = (options) => new VictronVrmAdapter(options);
 } else {
- new VictronVrmAdapter();
+    new VictronVrmAdapter();
 }
