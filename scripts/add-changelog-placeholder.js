@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Post-release script
@@ -9,23 +9,23 @@
  * Can also be run manually: node scripts/add-changelog-placeholder.js
  */
 
-const fs = require('node:fs');
-const path = require('node:path');
+const fs = require("node:fs");
+const path = require("node:path");
 
-const README = path.join(__dirname, '..', 'README.md');
-const PLACEHOLDER = '### **WORK IN PROGRESS**';
-const CHANGELOG_HEADER = '## Changelog';
+const README = path.join(__dirname, "..", "README.md");
+const PLACEHOLDER = "### **WORK IN PROGRESS**";
+const CHANGELOG_HEADER = "## Changelog";
 
 if (!fs.existsSync(README)) {
-    console.error('README.md not found!');
+    console.error("README.md not found!");
     process.exit(1);
 }
 
-let content = fs.readFileSync(README, 'utf8');
+let content = fs.readFileSync(README, "utf8");
 
 // Already present? Nothing to do.
 if (content.includes(PLACEHOLDER)) {
-    console.log('Changelog placeholder already present – nothing to do.');
+    console.log("Changelog placeholder already present – nothing to do.");
     process.exit(0);
 }
 
@@ -37,10 +37,10 @@ if (idx === -1) {
 }
 
 // Find end of the ## Changelog line
-const lineEnd = content.indexOf('\n', idx);
+const lineEnd = content.indexOf("\n", idx);
 const insertAt = lineEnd + 1;
 
-content = content.slice(0, insertAt) + '\n' + PLACEHOLDER + '\n- (no changes yet)\n' + content.slice(insertAt);
+content = content.slice(0, insertAt) + "\n" + PLACEHOLDER + "\n- (no changes yet)\n" + content.slice(insertAt);
 
-fs.writeFileSync(README, content, 'utf8');
-console.log('✅ Changelog placeholder added to README.md');
+fs.writeFileSync(README, content, "utf8");
+console.log("✅ Changelog placeholder added to README.md");
