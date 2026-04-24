@@ -130,7 +130,7 @@
     },
     "platform": "Javascript/Node.js",
     "extIcon": "https://raw.githubusercontent.com/morgenstern1987/ioBroker.victronvrm/main/admin/victronvrm.png",
-    "icon": "admin/victronvrm.png",
+    "icon": "victronvrm.png",
     "enabled": true,
     "mode": "daemon",
     "compact": true,
@@ -141,7 +141,7 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.19"
+        "js-controller": ">=6.0.11"
       }
     ],
     "globalDependencies": [],

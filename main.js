@@ -4,7 +4,7 @@
  * ioBroker.victronvrm
  * Victron Energy VRM API v2 adapter
  *
- * Rules followed (iobroker-ai-developer-guide):
+ * Rules followed (iobroker-ai-developer-guide + IoT-Entwicklungsstandards PDF):
  * - adapter.setTimeout / adapter.setInterval (not Node.js globals)
  * - adapter.terminate() (not process.exit())
  * - setObjectNotExistsAsync (never overwrite existing objects)
@@ -16,6 +16,8 @@
  * - Object IDs: only [A-Za-z0-9._-] (dots as separators)
  * - info.connection state implemented
  * - onUnload cleans up ALL timers
+ * - ESLint v9 Flat Config (eslint.config.mjs) instead of deprecated .eslintrc
+ * - VrmApiClient receives adapter sleep fn (no raw Node.js setTimeout in lib)
  */
 
 const utils = require('@iobroker/adapter-core');
@@ -61,7 +63,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
 
  this.idSite = parseInt(cfg.idSite, 10);
- this.api = new VrmApiClient(cfg.accessToken.trim(), this.log);
+ this.api = new VrmApiClient(cfg.accessToken.trim(), this.log, (ms) => this._sleep(ms));
 
  const diagSecs = Math.max(10, parseInt(cfg.pollInterval, 10) || 30);
  const statsSecs = Math.max(60, parseInt(cfg.statsInterval, 10) || 300);
