@@ -1,8 +1,34 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.3",
+    "version": "1.4.5",
     "news": {
+      "1.4.5": {
+        "en": "Fix: dependencies updated to current versions; io-package.json schema fixed (nodeVersion/encryptedNative/protectedNative moved to correct locations); admin globalDependency added; GitHub Actions workflow replaced with official ioBroker standard (check-and-lint, adapter-tests, deploy); jsonConfig size attributes added; node:fs and node:path prefixes applied",
+        "de": "Fix: Abhängigkeiten auf aktuelle Versionen aktualisiert; io-package.json Schema korrigiert (nodeVersion/encryptedNative/protectedNative an korrekte Stellen verschoben); admin globalDependency hinzugefügt; GitHub Actions Workflow durch offiziellen ioBroker-Standard ersetzt; jsonConfig Size-Attribute ergänzt; node:fs und node:path Präfixe gesetzt",
+        "ru": "Исправление: зависимости обновлены до актуальных версий; схема io-package.json исправлена; admin globalDependency добавлен; workflow GitHub Actions заменён официальным стандартом ioBroker; атрибуты размера jsonConfig добавлены; префиксы node:fs и node:path применены",
+        "pt": "Correção: dependências atualizadas; esquema io-package.json corrigido; globalDependency admin adicionado; workflow GitHub Actions substituído pelo padrão oficial ioBroker; atributos de tamanho jsonConfig adicionados; prefixos node:fs e node:path aplicados",
+        "nl": "Fix: afhankelijkheden bijgewerkt; io-package.json schema gecorrigeerd; admin globalDependency toegevoegd; GitHub Actions workflow vervangen door officiële ioBroker standaard; jsonConfig size-attributen toegevoegd; node:fs en node:path prefixen toegepast",
+        "fr": "Correction: dépendances mises à jour; schéma io-package.json corrigé; globalDependency admin ajouté; workflow GitHub Actions remplacé par le standard officiel ioBroker; attributs de taille jsonConfig ajoutés; préfixes node:fs et node:path appliqués",
+        "it": "Fix: dipendenze aggiornate; schema io-package.json corretto; globalDependency admin aggiunto; workflow GitHub Actions sostituito con lo standard ufficiale ioBroker; attributi size jsonConfig aggiunti; prefissi node:fs e node:path applicati",
+        "es": "Corrección: dependencias actualizadas; esquema io-package.json corregido; globalDependency admin añadido; workflow GitHub Actions reemplazado por el estándar oficial ioBroker; atributos de tamaño jsonConfig añadidos; prefijos node:fs y node:path aplicados",
+        "pl": "Poprawka: zaktualizowano zależności; naprawiono schemat io-package.json; dodano globalDependency admin; workflow GitHub Actions zastąpiono oficjalnym standardem ioBroker; dodano atrybuty rozmiaru jsonConfig; zastosowano prefiksy node:fs i node:path",
+        "uk": "Виправлення: залежності оновлено; схему io-package.json виправлено; globalDependency admin додано; workflow GitHub Actions замінено офіційним стандартом ioBroker; атрибути розміру jsonConfig додано; застосовано префікси node:fs і node:path",
+        "zh-cn": "修复: 依赖更新至最新版本; io-package.json模式修正; admin globalDependency已添加; GitHub Actions工作流替换为ioBroker官方标准; jsonConfig尺寸属性已添加; 应用node:fs和node:path前缀"
+      },
+      "1.4.4": {
+        "en": "Fix: E112 icon path corrected; remove deprecated common.title; migrate to ESLint v9 flat config; raise js-controller dependency to >=6.0.11",
+        "de": "Fix: E112 Icon-Pfad korrigiert; veraltetes common.title entfernt; Migration auf ESLint v9 Flat Config; js-controller Abhängigkeit auf >=6.0.11 angehoben",
+        "ru": "Исправление: путь иконки E112 исправлен; удалён устаревший common.title; миграция на ESLint v9 flat config; зависимость js-controller обновлена до >=6.0.11",
+        "pt": "Correção: caminho do ícone E112 corrigido; common.title depreciado removido; migração para ESLint v9 flat config; dependência js-controller elevada para >=6.0.11",
+        "nl": "Fix: E112 iconpad gecorrigeerd; verouderde common.title verwijderd; migratie naar ESLint v9 flat config; js-controller afhankelijkheid verhoogd naar >=6.0.11",
+        "fr": "Correction: chemin icône E112 corrigé; common.title déprécié supprimé; migration vers ESLint v9 flat config; dépendance js-controller élevée à >=6.0.11",
+        "it": "Fix: percorso icona E112 corretto; common.title deprecato rimosso; migrazione a ESLint v9 flat config; dipendenza js-controller aggiornata a >=6.0.11",
+        "es": "Corrección: ruta de icono E112 corregida; common.title obsoleto eliminado; migración a ESLint v9 flat config; dependencia js-controller elevada a >=6.0.11",
+        "pl": "Poprawka: ścieżka ikony E112 poprawiona; przestarzałe common.title usunięte; migracja do ESLint v9 flat config; zależność js-controller zaktualizowana do >=6.0.11",
+        "uk": "Виправлення: шлях іконки E112 виправлено; застаріле common.title видалено; міграція на ESLint v9 flat config; залежність js-controller оновлено до >=6.0.11",
+        "zh-cn": "修复: E112图标路径已修正; 移除过时的common.title; 迁移至ESLint v9平面配置; js-controller依赖提升至>=6.0.11"
+      },
       "1.4.3": {
         "en": "Docs: added GX device log interval explanation (set to 1 min for best update frequency); changed default diagnostics polling interval from 30s to 60s",
         "de": "Doku: Erklärung zum GX-Protokollierungsintervall hinzugefügt (auf 1 min setzen für beste Aktualisierungsrate); Standard-Diagnose-Intervall von 30s auf 60s geändert",
@@ -144,21 +170,17 @@
         "js-controller": ">=6.0.11"
       }
     ],
-    "globalDependencies": [],
-    "nodeVersion": ">=18",
+    "globalDependencies": [
+      {
+        "admin": ">= 7.6.17"
+      }
+    ],
     "loglevel": "info",
     "readme": "https://github.com/morgenstern1987/ioBroker.victronvrm/blob/main/README.md",
     "connectionType": "cloud",
     "dataSource": "poll",
     "messagebox": false,
-    "supportCustoms": false,
-    "allowInit": false,
-    "encryptedNative": [
-      "accessToken"
-    ],
-    "protectedNative": [
-      "accessToken"
-    ]
+    "supportCustoms": false
   },
   "native": {
     "accessToken": "",
@@ -201,5 +223,11 @@
       },
       "native": {}
     }
+  ],
+  "encryptedNative": [
+    "accessToken"
+  ],
+  "protectedNative": [
+    "accessToken"
   ]
 }

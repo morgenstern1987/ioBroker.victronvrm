@@ -6,7 +6,16 @@
       "type": "staticText",
       "newLine": true,
       "text": "Authentication",
-      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "4px" }
+      "style": {
+        "fontWeight": "bold",
+        "fontSize": "15px",
+        "marginTop": "4px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "accessToken": {
       "newLine": true,
@@ -18,14 +27,31 @@
       "newLine": true,
       "type": "staticText",
       "text": "Token Link",
-      "style": { "color": "#1976d2", "fontSize": "13px", "marginBottom": "8px" }
+      "style": {
+        "color": "#1976d2",
+        "fontSize": "13px",
+        "marginBottom": "8px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
-
     "_h_site": {
       "type": "staticText",
       "newLine": true,
       "text": "Installation",
-      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "12px" }
+      "style": {
+        "fontWeight": "bold",
+        "fontSize": "15px",
+        "marginTop": "12px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "idSite": {
       "newLine": true,
@@ -35,12 +61,20 @@
       "validator": "/^[0-9]+$/.test(data.idSite)",
       "validatorErrorText": "Only numbers allowed"
     },
-
     "_h_poll": {
       "type": "staticText",
       "newLine": true,
       "text": "Polling Intervals",
-      "style": { "fontWeight": "bold", "fontSize": "15px", "marginTop": "12px" }
+      "style": {
+        "fontWeight": "bold",
+        "fontSize": "15px",
+        "marginTop": "12px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "pollInterval": {
       "newLine": true,
@@ -60,18 +94,35 @@
       "max": 86400,
       "default": 300
     },
-
     "_rate_hint": {
       "newLine": true,
       "type": "staticText",
       "text": "Rate Limit Info",
-      "style": { "color": "#888", "fontSize": "12px", "marginTop": "12px" }
+      "style": {
+        "color": "#888",
+        "fontSize": "12px",
+        "marginTop": "12px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "_sensor_info": {
       "newLine": true,
       "type": "staticText",
       "text": "Sensor Count Info",
-      "style": { "color": "#555", "fontSize": "12px", "marginTop": "4px" }
+      "style": {
+        "color": "#555",
+        "fontSize": "12px",
+        "marginTop": "4px"
+      },
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     }
   }
 }

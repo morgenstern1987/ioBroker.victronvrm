@@ -7,3 +7,4 @@ iob_npm.done
 # Generate locally with: npm install
 # Commit it afterwards if you want reproducible installs via npm ci
 # package-lock.json
+.commitinfo
