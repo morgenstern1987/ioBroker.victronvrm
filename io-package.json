@@ -2,6 +2,7 @@
   "common": {
     "name": "victronvrm",
     "version": "1.4.3",
+    "license": "MIT",
     "news": {
       "1.4.3": {
         "en": "Docs: added GX device log interval explanation (set to 1 min for best update frequency); changed default diagnostics polling interval from 30s to 60s",
