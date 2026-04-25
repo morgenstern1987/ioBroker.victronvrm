@@ -30,8 +30,10 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  # E3010: job "check-and-lint" is required
+  # E3010: job "check-and-lint" required by ioBroker checker
+  # Also named "lint" for GitHub branch protection compatibility
   check-and-lint:
+    name: check-and-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,8 +48,25 @@ jobs:
       - name: Run package tests
         run: npm run test:package
 
-  # E3011: job "adapter-tests" is required
+  # Alias for branch protection rule "lint"
+  lint:
+    name: lint
+    needs: [check-and-lint]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "lint passed via check-and-lint"
+
+  # Alias for branch protection rule "test-package"
+  test-package:
+    name: test-package
+    needs: [check-and-lint]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "test-package passed via check-and-lint"
+
+  # E3011: job "adapter-tests" required by ioBroker checker
   adapter-tests:
+    name: adapter-tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -62,6 +81,14 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: npm run test:unit
+
+  # Alias for branch protection rule "test-unit"
+  test-unit:
+    name: test-unit
+    needs: [adapter-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "test-unit passed via adapter-tests"
 
   # E3012: job "deploy" for automated releases
   deploy:
