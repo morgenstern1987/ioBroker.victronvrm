@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.6",
+    "version": "1.4.7",
     "news": {
+      "1.4.7": {
+        "en": "Fix: use official ioBroker testing actions (check, adapter, deploy); fix workflow job names and structure; fix dependabot open-pull-requests-limit",
+        "de": "Fix: offizielle ioBroker Testing Actions; Workflow Job-Namen und Struktur korrigiert; Dependabot open-pull-requests-limit korrigiert",
+        "ru": "Исправление: официальные ioBroker testing actions; исправлена структура workflow",
+        "pt": "Correção: ações de teste ioBroker oficiais; estrutura do workflow corrigida",
+        "nl": "Fix: officiële ioBroker testing actions; workflow structuur gecorrigeerd",
+        "fr": "Correction: actions de test ioBroker officielles; structure du workflow corrigée",
+        "it": "Fix: azioni di test ioBroker ufficiali; struttura workflow corretta",
+        "es": "Corrección: acciones de prueba ioBroker oficiales; estructura del workflow corregida",
+        "pl": "Poprawka: oficjalne akcje testowe ioBroker; poprawiono strukturę workflow",
+        "uk": "Виправлення: офіційні ioBroker testing actions; виправлено структуру workflow",
+        "zh-cn": "修复：使用官方ioBroker测试动作；修复工作流结构"
+      },
       "1.4.6": {
         "en": "Fix: remove redundant devDependencies (chai/mocha/sinon included by @iobroker/testing); update admin to 7.6.20; fix vscode schema URLs; trim news to 7 entries; use ioBroker testing actions in workflow",
         "de": "Fix: redundante devDependencies entfernt; admin auf 7.6.20; vscode Schema-URLs korrigiert; News auf 7 Einträge gekürzt; ioBroker Testing Actions im Workflow",
@@ -80,19 +93,6 @@
         "pl": "Poprawiona stabilność, naprawiono przepływ pracy wydania",
         "uk": "Покращена стабільність, виправлено робочий процес випуску",
         "zh-cn": "提高稳定性，修复发布工作流程"
-      },
-      "1.0.1": {
-        "en": "First stable release: 111 sensors, i18n, correct project structure",
-        "de": "Erstes stabiles Release: 111 Sensoren, i18n, korrekte Projektstruktur",
-        "ru": "Первый стабильный выпуск: 111 датчиков, i18n, правильная структура проекта",
-        "pt": "Primeira versão estável: 111 sensores, i18n, estrutura de projeto correta",
-        "nl": "Eerste stabiele release: 111 sensoren, i18n, correcte projectstructuur",
-        "fr": "Première version stable: 111 capteurs, i18n, structure de projet correcte",
-        "it": "Prima versione stabile: 111 sensori, i18n, struttura progetto corretta",
-        "es": "Primera versión estable: 111 sensores, i18n, estructura de proyecto correcta",
-        "pl": "Pierwsze stabilne wydanie: 111 czujników, i18n, poprawna struktura projektu",
-        "uk": "Перший стабільний випуск: 111 датчиків, i18n, правильна структура проекту",
-        "zh-cn": "首个稳定版本：111个传感器，i18n，正确的项目结构"
       }
     },
     "titleLang": {
