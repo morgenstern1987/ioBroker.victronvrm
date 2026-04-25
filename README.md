@@ -9,8 +9,8 @@
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
   <img src="https://img.shields.io/badge/Version-1.4.3-blue" alt="Version"/>
-  <img src="https://img.shields.io/badge/Sensors-111-brightgreen" alt="111 Sensors"/>
-  <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/Core%20Sensors-90-brightgreen" alt="90 Core Sensors"/>
+  <img src="https://img.shields.io/badge/Node.js-%3E%3D20-green" alt="Node.js"/>
 </p>
 
 ---
@@ -46,7 +46,7 @@
 
 ## Features
 
-- **111 data points** from all Victron devices – identical coverage to the [hass-victron-vrm-api](https://github.com/jayjojayson/hass-victron-vrm-api) Home Assistant adapter
+- **90 core sensor states** from all Victron devices (plus **28 overall flow period states** via `/overallstats`)
 - **No local access required** – works for mobile systems (motorhome, boat, vehicle)
 - **Secure Access Token** – no username/password stored in the adapter
 - **Calculated values** directly in the adapter (power, cell voltage difference, PV total yield...)
@@ -61,7 +61,7 @@
 ## Prerequisites
 
 - ioBroker with js-controller ≥ 5.0.19
-- Node.js ≥ 18
+- Node.js ≥ 20
 - Victron VRM account: [vrm.victronenergy.com](https://vrm.victronenergy.com)
 - Personal Access Token: **[vrm.victronenergy.com/access-tokens](https://vrm.victronenergy.com/access-tokens)**
 - Installation ID (idSite)
@@ -70,11 +70,11 @@
 
 ## Installation
 
-```bash
-cd /opt/iobroker
-npm install /path/to/iobroker.victronvrm
-iobroker add victronvrm
-```
+Install the adapter via the ioBroker Admin UI:
+
+1. Open **Adapters**
+2. Click the menu icon and choose **Install from URL**
+3. Enter the repository URL or package source and install
 
 ---
 
@@ -84,7 +84,7 @@ iobroker add victronvrm
 |-------|-------------|
 | **Personal Access Token** | Create at: [vrm.victronenergy.com/access-tokens](https://vrm.victronenergy.com/access-tokens) |
 | **Installation ID (idSite)** | Number from VRM URL: `https://vrm.victronenergy.com/installation/`**`123456`**`/` |
-| **Diagnostics Interval** | How often the adapter polls the VRM API (default: 30s, min: 10s) |
+| **Diagnostics Interval** | How often the adapter polls the VRM API (default: 60s, min: 10s) |
 | **Overall Stats Interval** | Energy totals today/week/month/year (default: 300s) |
 
 ### ⚠️ Important: GX Device Log Interval
@@ -101,7 +101,7 @@ With this setting, sensor values in ioBroker will update approximately **every 6
 
 ---
 
-## Data Points (111 Sensors)
+## Data Points
 
 ### `battery.*` – 34 sensors
 SoC, voltage, current, power, temperature, min/max cell voltage, cell voltage diff, time to go, charge cycles, energy flows, 21 alarm states
@@ -121,7 +121,7 @@ Capacity, type, level, remaining, status, custom name
 ### `solar.*` – 7 sensors
 Charging power, battery voltage, charge state, temperature, yield today/yesterday, relay status
 
-### `system.*` – 5 sensors (ESS/BatteryLife)
+### `system.*` – 4 sensors (ESS/BatteryLife)
 BatteryLife state/SoC limit, minimum SoC, scheduled charging
 
 ### `overall.*` – 28 states (7 flows × 4 periods)
