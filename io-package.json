@@ -96,17 +96,17 @@
       "zh-cn": "Victron VRM 门户"
     },
     "desc": {
-      "en": "Reads data from Victron Energy VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (5), Overall Stats (20) = 111 sensors total",
-      "de": "Liest Daten aus der Victron Energy VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (5), Overall Stats (20) = 111 Sensoren",
-      "ru": "Считывает данные из Victron Energy VRM API v2: Батарея (34), MultiPlus (12), Сеть (10), PV-инвертор (17), Резервуар (6), Солнечный зарядник (7), Система (5), Общая статистика (20) = 111 датчиков",
-      "pt": "Lê dados da API VRM Victron Energy v2: Bateria (34), MultiPlus (12), Rede (10), Inversor FV (17), Tanque (6), Carregador Solar (7), Sistema (5), Estatísticas (20) = 111 sensores",
-      "nl": "Leest gegevens van Victron Energy VRM API v2: Batterij (34), MultiPlus (12), Net (10), PV-omvormer (17), Tank (6), Zonnelader (7), Systeem (5), Statistieken (20) = 111 sensoren",
-      "fr": "Lit les données de l'API VRM Victron Energy v2: Batterie (34), MultiPlus (12), Réseau (10), Onduleur PV (17), Réservoir (6), Chargeur solaire (7), Système (5), Statistiques (20) = 111 capteurs",
-      "it": "Legge i dati dall'API VRM Victron Energy v2: Batteria (34), MultiPlus (12), Rete (10), Inverter FV (17), Serbatoio (6), Caricatore solare (7), Sistema (5), Statistiche (20) = 111 sensori",
-      "es": "Lee datos de la API VRM Victron Energy v2: Batería (34), MultiPlus (12), Red (10), Inversor FV (17), Depósito (6), Cargador solar (7), Sistema (5), Estadísticas (20) = 111 sensores",
-      "pl": "Odczytuje dane z Victron Energy VRM API v2: Bateria (34), MultiPlus (12), Sieć (10), Falownik PV (17), Zbiornik (6), Ładowarka solarna (7), System (5), Statystyki (20) = 111 czujników",
-      "uk": "Зчитує дані з Victron Energy VRM API v2: Батарея (34), MultiPlus (12), Мережа (10), PV-інвертор (17), Резервуар (6), Сонячний зарядний пристрій (7), Система (5), Статистика (20) = 111 датчиків",
-      "zh-cn": "从Victron Energy VRM API v2读取数据：电池(34)、MultiPlus(12)、电网(10)、光伏逆变器(17)、水箱(6)、太阳能充电器(7)、系统(5)、总体统计(20)=共111个传感器"
+      "en": "Reads data from Victron Energy VRM API v2: Battery (34), MultiPlus (12), Grid (10), PV Inverter (17), Tank (6), Solar Charger (7), System Overview (4), Overall Stats (28) = 118 sensors total",
+      "de": "Liest Daten aus der Victron Energy VRM API v2: Batterie (34), MultiPlus (12), Netz (10), PV-Wechselrichter (17), Tank (6), Solar Charger (7), System (4), Overall Stats (28) = 118 Sensoren",
+      "ru": "Считывает данные из Victron Energy VRM API v2: Батарея (34), MultiPlus (12), Сеть (10), PV-инвертор (17), Резервуар (6), Солнечный зарядник (7), Система (4), Общая статистика (28) = 118 датчиков",
+      "pt": "Lê dados da API VRM Victron Energy v2: Bateria (34), MultiPlus (12), Rede (10), Inversor FV (17), Tanque (6), Carregador Solar (7), Sistema (4), Estatísticas (28) = 118 sensores",
+      "nl": "Leest gegevens van Victron Energy VRM API v2: Batterij (34), MultiPlus (12), Net (10), PV-omvormer (17), Tank (6), Zonnelader (7), Systeem (4), Statistieken (28) = 118 sensoren",
+      "fr": "Lit les données de l'API VRM Victron Energy v2: Batterie (34), MultiPlus (12), Réseau (10), Onduleur PV (17), Réservoir (6), Chargeur solaire (7), Système (4), Statistiques (28) = 118 capteurs",
+      "it": "Legge i dati dall'API VRM Victron Energy v2: Batteria (34), MultiPlus (12), Rete (10), Inverter FV (17), Serbatoio (6), Caricatore solare (7), Sistema (4), Statistiche (28) = 118 sensori",
+      "es": "Lee datos de la API VRM Victron Energy v2: Batería (34), MultiPlus (12), Red (10), Inversor FV (17), Depósito (6), Cargador solar (7), Sistema (4), Estadísticas (28) = 118 sensores",
+      "pl": "Odczytuje dane z Victron Energy VRM API v2: Bateria (34), MultiPlus (12), Sieć (10), Falownik PV (17), Zbiornik (6), Ładowarka solarna (7), System (4), Statystyki (28) = 118 czujników",
+      "uk": "Зчитує дані з Victron Energy VRM API v2: Батарея (34), MultiPlus (12), Мережа (10), PV-інвертор (17), Резервуар (6), Сонячний зарядний пристрій (7), Система (4), Статистика (28) = 118 датчиків",
+      "zh-cn": "从Victron Energy VRM API v2读取数据：电池(34)、MultiPlus(12)、电网(10)、光伏逆变器(17)、水箱(6)、太阳能充电器(7)、系统(4)、总体统计(28)=共118个传感器"
     },
     "authors": [
       {
@@ -144,22 +144,24 @@
         "js-controller": ">=6.0.11"
       }
     ],
-    "globalDependencies": [],
-    "nodeVersion": ">=18",
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.20"
+      }
+    ],
     "loglevel": "info",
     "readme": "https://github.com/morgenstern1987/ioBroker.victronvrm/blob/main/README.md",
     "connectionType": "cloud",
     "dataSource": "poll",
     "messagebox": false,
-    "supportCustoms": false,
-    "allowInit": false,
-    "encryptedNative": [
-      "accessToken"
-    ],
-    "protectedNative": [
-      "accessToken"
-    ]
+    "supportCustoms": false
   },
+  "encryptedNative": [
+    "accessToken"
+  ],
+  "protectedNative": [
+    "accessToken"
+  ],
   "native": {
     "accessToken": "",
     "idSite": "",

@@ -10,9 +10,9 @@ const {
 
 describe('sensor-definitions', () => {
 
-    it('should have 111 sensors total', () => {
+    it('should have at least 90 core sensors total', () => {
         // Battery(34) + MultiPlus(12) + Grid(10) + PVInverter(17) + Tank(6) + Solar(7) + System(4) = 90
-        // + Overall (8 keys × 4 periods = 32 states, but those are in OVERALL_STAT_KEYS)
+        // Overall stats are defined separately in OVERALL_STAT_KEYS (7 keys × 4 periods = 28 states).
         expect(ALL_SENSORS.length).to.be.greaterThanOrEqual(90);
     });
 

@@ -332,32 +332,6 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  }
 
- // ── Time helpers ──────────────────────────────────────────────────────────
-
- _dayStart(daysAgo = 0) {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - daysAgo);
- return Math.floor(d.getTime() / 1000);
- }
-
- _weekStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
- return Math.floor(d.getTime() / 1000);
- }
-
- _monthStart() {
- const d = new Date();
- d.setUTCHours(0, 0, 0, 0);
- d.setUTCDate(1);
- return Math.floor(d.getTime() / 1000);
- }
-
- _yearStart() {
- return Math.floor(new Date(Date.UTC(new Date().getUTCFullYear(), 0, 1)).getTime() / 1000);
- }
 }
 
 // ─── Compact mode support (guide requirement) ─────────────────────────────────
