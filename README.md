@@ -20,6 +20,15 @@
 ### **WORK IN PROGRESS**
 - (no changes yet)
 
+### 1.4.6 (2026-04-25)
+- Fix: remove redundant devDependencies (chai/mocha/sinon are included by @iobroker/testing)
+- Fix: admin globalDependency updated to 7.6.20
+- Fix: vscode schema URLs corrected (io-package.json and jsonConfig)
+- Fix: news entries trimmed to 7 (repository builder limit)
+- Fix: workflow now uses official ioBroker testing actions (check, adapter, deploy)
+- Fix: added auto-merge.yml for Dependabot PRs
+- Added CHANGELOG_OLD.md for older entries
+
 ### 1.4.5 (2026-04-25)
 - Fix: remove non-existent @iobroker/eslint-config dependency
 - Fix: all adapter checker errors resolved

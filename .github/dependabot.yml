@@ -1,6 +1,5 @@
 version: 2
 updates:
-  # E8916: github-actions entry required
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -8,11 +7,11 @@ updates:
     labels:
       - dependencies
 
-  # npm updates - weekly to stay within safe update frequency
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 5
     labels:
       - dependencies
     ignore:

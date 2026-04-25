@@ -1,0 +1,7 @@
+---
+# Auto-merge configuration for Dependabot PRs
+# Only patch and minor updates are auto-merged
+mergeMethod: squash
+allowedUpdateTypes:
+  - version-update:semver-patch
+  - version-update:semver-minor

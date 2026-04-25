@@ -5,6 +5,5 @@ npm-debug.log
 .create-adapter.json
 iob_npm.done
 .commitinfo
-# Generate locally with: npm install
-# Commit it afterwards if you want reproducible installs via npm ci
-# package-lock.json
+# package-lock.json is generated locally after npm install
+package-lock.json
