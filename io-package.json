@@ -1,33 +1,20 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.5",
+    "version": "1.4.4",
     "news": {
-      "1.4.5": {
-        "en": "Fix: dependencies updated to current versions; io-package.json schema fixed (nodeVersion/encryptedNative/protectedNative moved to correct locations); admin globalDependency added; GitHub Actions workflow replaced with official ioBroker standard (check-and-lint, adapter-tests, deploy); jsonConfig size attributes added; node:fs and node:path prefixes applied",
-        "de": "Fix: Abhängigkeiten auf aktuelle Versionen aktualisiert; io-package.json Schema korrigiert (nodeVersion/encryptedNative/protectedNative an korrekte Stellen verschoben); admin globalDependency hinzugefügt; GitHub Actions Workflow durch offiziellen ioBroker-Standard ersetzt; jsonConfig Size-Attribute ergänzt; node:fs und node:path Präfixe gesetzt",
-        "ru": "Исправление: зависимости обновлены до актуальных версий; схема io-package.json исправлена; admin globalDependency добавлен; workflow GitHub Actions заменён официальным стандартом ioBroker; атрибуты размера jsonConfig добавлены; префиксы node:fs и node:path применены",
-        "pt": "Correção: dependências atualizadas; esquema io-package.json corrigido; globalDependency admin adicionado; workflow GitHub Actions substituído pelo padrão oficial ioBroker; atributos de tamanho jsonConfig adicionados; prefixos node:fs e node:path aplicados",
-        "nl": "Fix: afhankelijkheden bijgewerkt; io-package.json schema gecorrigeerd; admin globalDependency toegevoegd; GitHub Actions workflow vervangen door officiële ioBroker standaard; jsonConfig size-attributen toegevoegd; node:fs en node:path prefixen toegepast",
-        "fr": "Correction: dépendances mises à jour; schéma io-package.json corrigé; globalDependency admin ajouté; workflow GitHub Actions remplacé par le standard officiel ioBroker; attributs de taille jsonConfig ajoutés; préfixes node:fs et node:path appliqués",
-        "it": "Fix: dipendenze aggiornate; schema io-package.json corretto; globalDependency admin aggiunto; workflow GitHub Actions sostituito con lo standard ufficiale ioBroker; attributi size jsonConfig aggiunti; prefissi node:fs e node:path applicati",
-        "es": "Corrección: dependencias actualizadas; esquema io-package.json corregido; globalDependency admin añadido; workflow GitHub Actions reemplazado por el estándar oficial ioBroker; atributos de tamaño jsonConfig añadidos; prefijos node:fs y node:path aplicados",
-        "pl": "Poprawka: zaktualizowano zależności; naprawiono schemat io-package.json; dodano globalDependency admin; workflow GitHub Actions zastąpiono oficjalnym standardem ioBroker; dodano atrybuty rozmiaru jsonConfig; zastosowano prefiksy node:fs i node:path",
-        "uk": "Виправлення: залежності оновлено; схему io-package.json виправлено; globalDependency admin додано; workflow GitHub Actions замінено офіційним стандартом ioBroker; атрибути розміру jsonConfig додано; застосовано префікси node:fs і node:path",
-        "zh-cn": "修复: 依赖更新至最新版本; io-package.json模式修正; admin globalDependency已添加; GitHub Actions工作流替换为ioBroker官方标准; jsonConfig尺寸属性已添加; 应用node:fs和node:path前缀"
-      },
       "1.4.4": {
-        "en": "Fix: E112 icon path corrected; remove deprecated common.title; migrate to ESLint v9 flat config; raise js-controller dependency to >=6.0.11",
-        "de": "Fix: E112 Icon-Pfad korrigiert; veraltetes common.title entfernt; Migration auf ESLint v9 Flat Config; js-controller Abhängigkeit auf >=6.0.11 angehoben",
-        "ru": "Исправление: путь иконки E112 исправлен; удалён устаревший common.title; миграция на ESLint v9 flat config; зависимость js-controller обновлена до >=6.0.11",
-        "pt": "Correção: caminho do ícone E112 corrigido; common.title depreciado removido; migração para ESLint v9 flat config; dependência js-controller elevada para >=6.0.11",
-        "nl": "Fix: E112 iconpad gecorrigeerd; verouderde common.title verwijderd; migratie naar ESLint v9 flat config; js-controller afhankelijkheid verhoogd naar >=6.0.11",
-        "fr": "Correction: chemin icône E112 corrigé; common.title déprécié supprimé; migration vers ESLint v9 flat config; dépendance js-controller élevée à >=6.0.11",
-        "it": "Fix: percorso icona E112 corretto; common.title deprecato rimosso; migrazione a ESLint v9 flat config; dipendenza js-controller aggiornata a >=6.0.11",
-        "es": "Corrección: ruta de icono E112 corregida; common.title obsoleto eliminado; migración a ESLint v9 flat config; dependencia js-controller elevada a >=6.0.11",
-        "pl": "Poprawka: ścieżka ikony E112 poprawiona; przestarzałe common.title usunięte; migracja do ESLint v9 flat config; zależność js-controller zaktualizowana do >=6.0.11",
-        "uk": "Виправлення: шлях іконки E112 виправлено; застаріле common.title видалено; міграція на ESLint v9 flat config; залежність js-controller оновлено до >=6.0.11",
-        "zh-cn": "修复: E112图标路径已修正; 移除过时的common.title; 迁移至ESLint v9平面配置; js-controller依赖提升至>=6.0.11"
+        "en": "Add adapter icon; migrate to ESLint v9 Flat Config (eslint.config.mjs); inject adapter sleep function into VrmApiClient (no Node.js global setTimeout in lib); add real package-lock.json",
+        "de": "Adapter-Icon hinzugefügt; Migration auf ESLint v9 Flat Config (eslint.config.mjs); Adapter-Sleep-Funktion in VrmApiClient injiziert (kein Node.js globales setTimeout in der Lib); echte package-lock.json hinzugefügt",
+        "ru": "Добавлена иконка адаптера; миграция на ESLint v9 Flat Config; внедрена функция sleep адаптера в VrmApiClient; добавлен реальный package-lock.json",
+        "pt": "Ícone do adaptador adicionado; migração para ESLint v9 Flat Config; função sleep do adaptador injetada no VrmApiClient; package-lock.json real adicionado",
+        "nl": "Adapter-pictogram toegevoegd; migratie naar ESLint v9 Flat Config; adapter sleep-functie geïnjecteerd in VrmApiClient; echte package-lock.json toegevoegd",
+        "fr": "Icône d'adaptateur ajoutée; migration vers ESLint v9 Flat Config; fonction sleep de l'adaptateur injectée dans VrmApiClient; vrai package-lock.json ajouté",
+        "it": "Icona adattatore aggiunta; migrazione a ESLint v9 Flat Config; funzione sleep adattatore iniettata in VrmApiClient; package-lock.json reale aggiunto",
+        "es": "Icono de adaptador añadido; migración a ESLint v9 Flat Config; función sleep del adaptador inyectada en VrmApiClient; package-lock.json real añadido",
+        "pl": "Dodano ikonę adaptera; migracja do ESLint v9 Flat Config; funkcja sleep adaptera wstrzyknięta do VrmApiClient; dodano prawdziwy package-lock.json",
+        "uk": "Додано іконку адаптера; міграція на ESLint v9 Flat Config; функцію sleep адаптера впроваджено у VrmApiClient; додано реальний package-lock.json",
+        "zh-cn": "添加适配器图标；迁移到ESLint v9 Flat Config；将适配器sleep函数注入VrmApiClient；添加真实的package-lock.json"
       },
       "1.4.3": {
         "en": "Docs: added GX device log interval explanation (set to 1 min for best update frequency); changed default diagnostics polling interval from 30s to 60s",
@@ -156,7 +143,7 @@
     },
     "platform": "Javascript/Node.js",
     "extIcon": "https://raw.githubusercontent.com/morgenstern1987/ioBroker.victronvrm/main/admin/victronvrm.png",
-    "icon": "victronvrm.png",
+    "icon": "admin/victronvrm.png",
     "enabled": true,
     "mode": "daemon",
     "compact": true,
@@ -167,20 +154,24 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=6.0.11"
+        "js-controller": ">=5.0.19"
       }
     ],
-    "globalDependencies": [
-      {
-        "admin": ">= 7.6.17"
-      }
-    ],
+    "globalDependencies": [],
+    "nodeVersion": ">=18",
     "loglevel": "info",
     "readme": "https://github.com/morgenstern1987/ioBroker.victronvrm/blob/main/README.md",
     "connectionType": "cloud",
     "dataSource": "poll",
     "messagebox": false,
-    "supportCustoms": false
+    "supportCustoms": false,
+    "allowInit": false,
+    "encryptedNative": [
+      "accessToken"
+    ],
+    "protectedNative": [
+      "accessToken"
+    ]
   },
   "native": {
     "accessToken": "",
@@ -223,11 +214,5 @@
       },
       "native": {}
     }
-  ],
-  "encryptedNative": [
-    "accessToken"
-  ],
-  "protectedNative": [
-    "accessToken"
   ]
 }

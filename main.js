@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
  * ioBroker.victronvrm
@@ -18,19 +18,19 @@
  * - onUnload cleans up ALL timers
  */
 
-const utils = require("@iobroker/adapter-core");
-const VrmApiClient = require("./lib/vrm-api");
+const utils = require('@iobroker/adapter-core');
+const VrmApiClient = require('./lib/vrm-api');
 const {
  ALL_SENSORS,
  OVERALL_STAT_KEYS, OVERALL_PERIODS,
  TEXT_STATES, META_STATES, CHANNELS,
  VEBUS_STATE_TEXT, SOLAR_CHARGE_STATE_TEXT,
-} = require("./lib/sensor-definitions");
+} = require('./lib/sensor-definitions');
 
 class VictronVrmAdapter extends utils.Adapter {
 
  constructor(options = {}) {
- super({ ...options, name: "victronvrm" });
+ super({ ...options, name: 'victronvrm' });
 
  /** @type {VrmApiClient|null} */
  this.api = null;
@@ -40,28 +40,28 @@ class VictronVrmAdapter extends utils.Adapter {
  this._timerStats = null;
  this._diagLogged = false;
 
- this.on("ready", this.onReady.bind(this));
- this.on("unload", this.onUnload.bind(this));
+ this.on('ready', this.onReady.bind(this));
+ this.on('unload', this.onUnload.bind(this));
  }
 
  // ── Lifecycle ─────────────────────────────────────────────────────────────
 
  async onReady() {
- await this.setStateAsync("info.connection", { val: false, ack: true });
+ await this.setStateAsync('info.connection', { val: false, ack: true });
 
  const cfg = this.config;
 
  if (!cfg.accessToken || cfg.accessToken.trim().length < 10) {
- this.log.error("No valid access token configured! Create one at https://vrm.victronenergy.com/access-tokens");
+ this.log.error('No valid access token configured! Create one at https://vrm.victronenergy.com/access-tokens');
  return;
  }
  if (!cfg.idSite || isNaN(parseInt(cfg.idSite, 10))) {
- this.log.error("No valid installation ID (idSite) configured!");
+ this.log.error('No valid installation ID (idSite) configured!');
  return;
  }
 
  this.idSite = parseInt(cfg.idSite, 10);
- this.api = new VrmApiClient(cfg.accessToken.trim(), this.log);
+ this.api = new VrmApiClient(cfg.accessToken.trim(), this.log, (ms) => this._sleep(ms));
 
  const diagSecs = Math.max(10, parseInt(cfg.pollInterval, 10) || 30);
  const statsSecs = Math.max(60, parseInt(cfg.statsInterval, 10) || 300);
@@ -91,7 +91,7 @@ class VictronVrmAdapter extends utils.Adapter {
  // ── Helper: sleep ─────────────────────────────────────────────────────────
 
  _sleep(ms) {
- return new Promise((resolve) => this.setTimeout(resolve, ms));
+ return new Promise(resolve => this.setTimeout(resolve, ms));
  }
 
  // ── Object tree ───────────────────────────────────────────────────────────
@@ -100,7 +100,7 @@ class VictronVrmAdapter extends utils.Adapter {
  // All channels (intermediate objects must be created explicitly – guide rule!)
  for (const [id, def] of Object.entries(CHANNELS)) {
  await this.setObjectNotExistsAsync(id, {
- type: "channel",
+ type: 'channel',
  common: { name: def.name },
  native: {},
  });
@@ -109,12 +109,12 @@ class VictronVrmAdapter extends utils.Adapter {
  // Sensor states
  for (const s of ALL_SENSORS) {
  await this.setObjectNotExistsAsync(s.id, {
- type: "state",
+ type: 'state',
  common: {
  name: s.name,
- type: s.type || "number",
- role: s.role || "value",
- unit: s.unit || "",
+ type: s.type || 'number',
+ role: s.role || 'value',
+ unit: s.unit || '',
  read: true,
  write: false,
  },
@@ -125,8 +125,8 @@ class VictronVrmAdapter extends utils.Adapter {
  // Text states
  for (const s of TEXT_STATES) {
  await this.setObjectNotExistsAsync(s.id, {
- type: "state",
- common: { name: s.name, type: s.type, role: s.role, unit: "", read: true, write: false },
+ type: 'state',
+ common: { name: s.name, type: s.type, role: s.role, unit: '', read: true, write: false },
  native: {},
  });
  }
@@ -136,11 +136,11 @@ class VictronVrmAdapter extends utils.Adapter {
  for (const period of OVERALL_PERIODS) {
  const id = `${stat.id}${period.suffix}`;
  await this.setObjectNotExistsAsync(id, {
- type: "state",
+ type: 'state',
  common: {
  name: { en: `${stat.name.en} (${period.label.en})`, de: `${stat.name.de} (${period.label.de})` },
- type: "number",
- role: stat.unit === "W" ? "value.power" : "value.energy",
+ type: 'number',
+ role: stat.unit === 'W' ? 'value.power' : 'value.energy',
  unit: stat.unit,
  read: true, write: false,
  },
@@ -152,8 +152,8 @@ class VictronVrmAdapter extends utils.Adapter {
  // Meta states
  for (const s of META_STATES) {
  await this.setObjectNotExistsAsync(s.id, {
- type: "state",
- common: { name: s.name, type: s.type, role: s.role, unit: "", read: true, write: false },
+ type: 'state',
+ common: { name: s.name, type: s.type, role: s.role, unit: '', read: true, write: false },
  native: {},
  });
  }
@@ -197,25 +197,25 @@ class VictronVrmAdapter extends utils.Adapter {
  // Text states
  if (vals[40] !== undefined) {
  const txt = VEBUS_STATE_TEXT[vals[40]] || `State ${vals[40]}`;
- await this.setStateAsync("multiplus.stateText", { val: txt, ack: true });
+ await this.setStateAsync('multiplus.stateText', { val: txt, ack: true });
  }
  if (vals[85] !== undefined) {
  const txt = SOLAR_CHARGE_STATE_TEXT[vals[85]] || `State ${vals[85]}`;
- await this.setStateAsync("solar.chargeStateText", { val: txt, ack: true });
+ await this.setStateAsync('solar.chargeStateText', { val: txt, ack: true });
  }
 
  // Timestamp and connection flag
- await this.setStateAsync("meta.lastUpdate", { val: new Date().toISOString(), ack: true });
- await this.setStateAsync("info.connection", { val: true, ack: true });
+ await this.setStateAsync('meta.lastUpdate', { val: new Date().toISOString(), ack: true });
+ await this.setStateAsync('info.connection', { val: true, ack: true });
 
- this.log.debug("Diagnostics poll successful");
+ this.log.debug('Diagnostics poll successful');
 
  // Alarms (separate call, non-critical)
  await this._pollAlarms();
 
  } catch (err) {
  this.log.error(`Diagnostics poll failed: ${err.message}`);
- await this.setStateAsync("info.connection", { val: false, ack: true });
+ await this.setStateAsync('info.connection', { val: false, ack: true });
  }
  }
 
@@ -224,11 +224,11 @@ class VictronVrmAdapter extends utils.Adapter {
  async _pollAlarms() {
  try {
  const alarms = await this.api.getAlarms(this.idSite);
- const active = alarms.filter((a) => !a.cleared);
- await this.setStateAsync("meta.activeAlarmCount", { val: active.length, ack: true });
- await this.setStateAsync("meta.alarmsJson", { val: JSON.stringify(active), ack: true });
+ const active = alarms.filter(a => !a.cleared);
+ await this.setStateAsync('meta.activeAlarmCount', { val: active.length, ack: true });
+ await this.setStateAsync('meta.alarmsJson', { val: JSON.stringify(active), ack: true });
  if (active.length > 0) {
- active.forEach((a) => this.log.warn(`VRM alarm [${a.idAlarm}] ${a.name}: ${a.description || ""}`));
+ active.forEach(a => this.log.warn(`VRM alarm [${a.idAlarm}] ${a.name}: ${a.description || ''}`));
  }
  } catch (err) {
  this.log.warn(`Alarms poll failed: ${err.message}`);
@@ -258,15 +258,15 @@ class VictronVrmAdapter extends utils.Adapter {
 
  // Populate string-vrmId sensors (Bc, Bg, Pc, Pb, Pg, Gc, Gb) from today
  // These have string vrmIds that don't exist in /diagnostics (numeric only)
- if (period.apiKey === "today") {
+ if (period.apiKey === 'today') {
  const strMap = {
- "Bc": "battery.energyToConsumersToday",
- "Bg": "battery.energyToGridToday",
- "Pc": "pvInverter.energyToConsumersToday",
- "Pb": "pvInverter.energyToBatteryToday",
- "Pg": "pvInverter.energyToGridToday",
- "Gc": "multiplus.energyGridToConsumersToday",
- "Gb": "multiplus.energyGridToBatteryToday",
+ 'Bc': 'battery.energyToConsumersToday',
+ 'Bg': 'battery.energyToGridToday',
+ 'Pc': 'pvInverter.energyToConsumersToday',
+ 'Pb': 'pvInverter.energyToBatteryToday',
+ 'Pg': 'pvInverter.energyToGridToday',
+ 'Gc': 'multiplus.energyGridToConsumersToday',
+ 'Gb': 'multiplus.energyGridToBatteryToday',
  };
  for (const [code, stateId] of Object.entries(strMap)) {
  const val = totals[code] ?? null;
@@ -276,11 +276,11 @@ class VictronVrmAdapter extends utils.Adapter {
  }
 
  // Recalculate pvInverter.totalYieldToday from today's totals
- const pc = totals["Pc"] ?? 0;
- const pb = totals["Pb"] ?? 0;
- const pg = totals["Pg"] ?? 0;
- if (totals["Pc"] !== undefined || totals["Pb"] !== undefined || totals["Pg"] !== undefined) {
- await this.setStateAsync("pvInverter.totalYieldToday", {
+ const pc = totals['Pc'] ?? 0;
+ const pb = totals['Pb'] ?? 0;
+ const pg = totals['Pg'] ?? 0;
+ if (totals['Pc'] !== undefined || totals['Pb'] !== undefined || totals['Pg'] !== undefined) {
+ await this.setStateAsync('pvInverter.totalYieldToday', {
  val: Math.round((pc + pb + pg) * 100) / 100, ack: true,
  });
  }
@@ -290,8 +290,8 @@ class VictronVrmAdapter extends utils.Adapter {
  await this._sleep(500);
  }
 
- await this.setStateAsync("meta.lastStatsUpdate", { val: new Date().toISOString(), ack: true });
- this.log.debug("Overall stats poll successful");
+ await this.setStateAsync('meta.lastStatsUpdate', { val: new Date().toISOString(), ack: true });
+ this.log.debug('Overall stats poll successful');
 
  } catch (err) {
  this.log.error(`Overall stats poll failed: ${err.message}`);
@@ -303,13 +303,13 @@ class VictronVrmAdapter extends utils.Adapter {
  async _loadInstallationMeta() {
  try {
  const inst = await this.api.getInstallation(this.idSite);
- if (inst.name) await this.setStateAsync("meta.siteName", { val: inst.name, ack: true });
- if (inst.timezone) await this.setStateAsync("meta.timezone", { val: inst.timezone, ack: true });
- if (inst.country) await this.setStateAsync("meta.country", { val: inst.country, ack: true });
- await this.setStateAsync("meta.idSite", { val: this.idSite, ack: true });
+ if (inst.name) await this.setStateAsync('meta.siteName', { val: inst.name, ack: true });
+ if (inst.timezone) await this.setStateAsync('meta.timezone', { val: inst.timezone, ack: true });
+ if (inst.country) await this.setStateAsync('meta.country', { val: inst.country, ack: true });
+ await this.setStateAsync('meta.idSite', { val: this.idSite, ack: true });
  } catch (err) {
  this.log.warn(`Could not load installation metadata: ${err.message}`);
- await this.setStateAsync("meta.idSite", { val: this.idSite, ack: true });
+ await this.setStateAsync('meta.idSite', { val: this.idSite, ack: true });
  }
  }
 
@@ -324,7 +324,7 @@ class VictronVrmAdapter extends utils.Adapter {
  }
  this._timerDiag = null;
  this._timerStats = null;
- this.setStateAsync("info.connection", { val: false, ack: true }).finally(callback);
+ this.setStateAsync('info.connection', { val: false, ack: true }).finally(callback);
  } catch {
  callback();
  }
