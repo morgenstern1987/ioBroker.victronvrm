@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
-    // 1. Global ignores – must be a standalone object (no other keys)
+    // 1. Global ignores
     {
         ignores: [
             'node_modules/**',
@@ -11,7 +11,7 @@ export default [
         ],
     },
 
-    // 2. Main source rules (CommonJS: require, __dirname etc. are globals)
+    // 2. Main source rules
     {
         files: ['**/*.js'],
         ...js.configs.recommended,
