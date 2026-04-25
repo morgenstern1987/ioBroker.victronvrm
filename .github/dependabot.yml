@@ -5,18 +5,14 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    cooldown:
-      default: 7
     labels:
       - dependencies
 
-  # npm with cooldown >= 7 days (E8915)
+  # npm updates - weekly to stay within safe update frequency
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
-    cooldown:
-      default: 7
     labels:
       - dependencies
     ignore:
