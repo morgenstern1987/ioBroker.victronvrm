@@ -20,6 +20,28 @@
 ### **WORK IN PROGRESS**
 - (no changes yet)
 
+### 1.4.5 (2026-04-25)
+- Fix: remove non-existent @iobroker/eslint-config dependency
+- Fix: all adapter checker errors resolved
+  - Updated adapter-core to ^3.3.2, @iobroker/testing to ^5.2.2
+  - Updated release-script and plugins to ^5.x
+  - Updated @iobroker/adapter-dev to ^1.5.0
+  - Node.js minimum raised to >=20
+  - js-controller dependency raised to >=6.0.11
+  - admin >=7.6.17 added to globalDependencies
+  - Removed invalid io-package.json /common properties: nodeVersion, allowInit
+  - Moved encryptedNative/protectedNative to io-package.json root level
+  - Fixed extIcon URL to raw.githubusercontent.com
+  - Added tags trigger to workflow (v[0-9]+.[0-9]+.[0-9]+)
+  - Added concurrency configuration to workflow
+  - Added required jobs: check-and-lint, adapter-tests (matrix 20/22/24), deploy
+  - Added .github/dependabot.yml with cooldown and github-actions entry
+  - Added .github/workflows/automerge-dependabot.yml
+  - Added .vscode/settings.json with JSON schema definitions
+  - Added .commitinfo to .gitignore
+  - Use node:fs and node:path instead of fs and path
+  - Removed direct npm install instructions from README
+
 ### 1.4.4 (2026-04-25)
 - Add adapter icon (admin/victronvrm.png)
 - Migrate to ESLint v9 Flat Config (eslint.config.mjs), remove deprecated .eslintrc.json
