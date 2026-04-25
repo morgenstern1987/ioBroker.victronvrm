@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.5",
+    "version": "1.4.6",
     "news": {
+      "1.4.6": {
+        "en": "Fix: remove redundant devDependencies (chai/mocha/sinon included by @iobroker/testing); update admin to 7.6.20; fix vscode schema URLs; trim news to 7 entries; use ioBroker testing actions in workflow",
+        "de": "Fix: redundante devDependencies entfernt; admin auf 7.6.20; vscode Schema-URLs korrigiert; News auf 7 Einträge gekürzt; ioBroker Testing Actions im Workflow",
+        "ru": "Исправление: удалены избыточные devDependencies; admin до 7.6.20; исправлены URL схем vscode",
+        "pt": "Correção: devDependencies redundantes removidas; admin para 7.6.20; URLs de esquema vscode corrigidas",
+        "nl": "Fix: redundante devDependencies verwijderd; admin naar 7.6.20; vscode schema-URL gecorrigeerd",
+        "fr": "Correction: devDependencies redondantes supprimées; admin vers 7.6.20; URLs de schéma vscode corrigées",
+        "it": "Fix: devDependencies ridondanti rimossi; admin a 7.6.20; URL schema vscode corretti",
+        "es": "Corrección: devDependencies redundantes eliminadas; admin a 7.6.20; URLs de esquema vscode corregidas",
+        "pl": "Poprawka: usunięto nadmiarowe devDependencies; admin do 7.6.20; poprawiono URL schematów vscode",
+        "uk": "Виправлення: видалено зайві devDependencies; admin до 7.6.20; виправлено URL схем vscode",
+        "zh-cn": "修复：删除冗余devDependencies；admin升级到7.6.20；修复vscode schema URL"
+      },
       "1.4.5": {
         "en": "Fix: all adapter checker errors resolved (dependencies updated, io-package.json schema fixes, workflow improvements, dependabot config)",
         "de": "Fix: alle Adapter-Checker-Fehler behoben (Abhängigkeiten aktualisiert, io-package.json Schema-Fixes, Workflow-Verbesserungen, Dependabot-Konfiguration)",
@@ -80,32 +93,6 @@
         "pl": "Pierwsze stabilne wydanie: 111 czujników, i18n, poprawna struktura projektu",
         "uk": "Перший стабільний випуск: 111 датчиків, i18n, правильна структура проекту",
         "zh-cn": "首个稳定版本：111个传感器，i18n，正确的项目结构"
-      },
-      "0.3.1": {
-        "en": "Fix: /installations/{id} returns 400; fix stats interval parameter; fix jsonConfig",
-        "de": "Fix: /installations/{id} liefert 400; Stats-Intervall korrigiert; jsonConfig-Fix",
-        "ru": "Исправление: /installations/{id} возвращает 400; исправлен параметр интервала",
-        "pt": "Correção: /installations/{id} retorna 400; parâmetro de intervalo corrigido",
-        "nl": "Fix: /installations/{id} geeft 400; interval parameter gecorrigeerd",
-        "fr": "Correction: /installations/{id} renvoie 400; paramètre d'intervalle corrigé",
-        "it": "Fix: /installations/{id} restituisce 400; parametro intervallo corretto",
-        "es": "Corrección: /installations/{id} devuelve 400; parámetro de intervalo corregido",
-        "pl": "Poprawka: /installations/{id} zwraca 400; naprawiono parametr interwału",
-        "uk": "Виправлення: /installations/{id} повертає 400; виправлено параметр інтервалу",
-        "zh-cn": "修复: /installations/{id} 返回400; 修复统计间隔参数"
-      },
-      "0.1.0": {
-        "en": "Initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Первый выпуск",
-        "pt": "Lançamento inicial",
-        "nl": "Eerste release",
-        "fr": "Première version",
-        "it": "Prima versione",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Перший випуск",
-        "zh-cn": "初始版本"
       }
     },
     "titleLang": {
@@ -172,7 +159,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=7.6.17"
+        "admin": ">=7.6.20"
       }
     ],
     "loglevel": "info",

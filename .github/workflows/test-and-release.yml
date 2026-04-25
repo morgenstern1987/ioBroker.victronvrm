@@ -1,6 +1,5 @@
 name: Test and Release
 
-# E3008: push trigger must include tags
 on:
   push:
     branches:
@@ -20,20 +19,17 @@ on:
         required: false
         default: 'patch'
 
-# E3009: recommended concurrency configuration
+# E3009: concurrency configuration
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Force all GitHub Actions to run on Node.js 24
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  # E3010: job "check-and-lint" required by ioBroker checker
-  # Also named "lint" for GitHub branch protection compatibility
+  # E3010: check-and-lint job using ioBroker testing action
   check-and-lint:
-    name: check-and-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,54 +39,30 @@ jobs:
           node-version: 24
       - name: Install dependencies
         run: npm install
-      - name: Run ESLint
-        run: npm run lint
-      - name: Run package tests
-        run: npm run test:package
+      # W3013: use ioBroker testing-action-check
+      - name: Check and lint
+        uses: ioBroker/testing-action-check@v1
+        with:
+          node-version: '24.x'
+          lint: true
 
-  # Alias for branch protection rule "lint"
-  lint:
-    name: lint
-    needs: [check-and-lint]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "lint passed via check-and-lint"
-
-  # Alias for branch protection rule "test-package"
-  test-package:
-    name: test-package
-    needs: [check-and-lint]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "test-package passed via check-and-lint"
-
-  # E3011: job "adapter-tests" required by ioBroker checker
+  # E3011: adapter-tests job using ioBroker testing action
+  # S3014: needs check-and-lint
   adapter-tests:
-    name: adapter-tests
+    needs: check-and-lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      # W3015: use ioBroker testing-action-adapter
+      - name: Run adapter tests
+        uses: ioBroker/testing-action-adapter@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: npm install
-      - name: Run unit tests
-        run: npm run test:unit
+          node-version: ${{ matrix.node-version }}.x
 
-  # Alias for branch protection rule "test-unit"
-  test-unit:
-    name: test-unit
-    needs: [adapter-tests]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "test-unit passed via adapter-tests"
-
-  # E3012: job "deploy" for automated releases
+  # E3012: deploy job using ioBroker testing-action-deploy
   deploy:
     needs: [check-and-lint, adapter-tests]
     runs-on: ubuntu-latest
@@ -104,20 +76,10 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Use Node.js 24
-        uses: actions/setup-node@v4
+      # W3017: use ioBroker testing-action-deploy
+      - name: Deploy to npm
+        uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-      - name: Install dependencies
-        run: npm install
-      - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '24.x'
+          npm-token: ${{ secrets.NPM_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
