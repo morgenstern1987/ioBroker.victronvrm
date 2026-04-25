@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.7",
+    "version": "1.4.8",
     "news": {
+      "1.4.8": {
+        "en": "Fix: migrate to @iobroker/eslint-config; remove redundant eslint devDependencies",
+        "de": "Fix: Migration auf @iobroker/eslint-config; redundante eslint devDependencies entfernt",
+        "ru": "Исправление: миграция на @iobroker/eslint-config",
+        "pt": "Correção: migração para @iobroker/eslint-config",
+        "nl": "Fix: migratie naar @iobroker/eslint-config",
+        "fr": "Correction: migration vers @iobroker/eslint-config",
+        "it": "Fix: migrazione a @iobroker/eslint-config",
+        "es": "Corrección: migración a @iobroker/eslint-config",
+        "pl": "Poprawka: migracja do @iobroker/eslint-config",
+        "uk": "Виправлення: міграція на @iobroker/eslint-config",
+        "zh-cn": "修复：迁移到@iobroker/eslint-config"
+      },
       "1.4.7": {
         "en": "Fix: use official ioBroker testing actions (check, adapter, deploy); fix workflow job names and structure; fix dependabot open-pull-requests-limit",
         "de": "Fix: offizielle ioBroker Testing Actions; Workflow Job-Namen und Struktur korrigiert; Dependabot open-pull-requests-limit korrigiert",
@@ -80,19 +93,6 @@
         "pl": "Poprawka: poprawny endpoint /overallstats, kody API dwie litery, klucze okresu, meta.siteName poprawiony, jednostka batteryLifeState poprawiona",
         "uk": "Виправлення: правильний endpoint /overallstats, двобуквені коди API, ключі періодів, meta.siteName виправлено, одиниця batteryLifeState виправлена",
         "zh-cn": "修复：正确的/overallstats端点，两字母API代码，周期键，meta.siteName修复，batteryLifeState单位修复"
-      },
-      "1.1.0": {
-        "en": "Improved stability, fixed release workflow, added .releaseconfig.json for automatic version sync",
-        "de": "Verbesserte Stabilität, Release-Workflow korrigiert, .releaseconfig.json für automatische Versionssynchronisation hinzugefügt",
-        "ru": "Улучшена стабильность, исправлен рабочий процесс выпуска",
-        "pt": "Estabilidade melhorada, fluxo de trabalho de lançamento corrigido",
-        "nl": "Verbeterde stabiliteit, release-workflow gecorrigeerd",
-        "fr": "Stabilité améliorée, flux de travail de publication corrigé",
-        "it": "Stabilità migliorata, flusso di lavoro di rilascio corretto",
-        "es": "Estabilidad mejorada, flujo de trabajo de lanzamiento corregido",
-        "pl": "Poprawiona stabilność, naprawiono przepływ pracy wydania",
-        "uk": "Покращена стабільність, виправлено робочий процес випуску",
-        "zh-cn": "提高稳定性，修复发布工作流程"
       }
     },
     "titleLang": {

@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
-  <img src="https://img.shields.io/badge/Version-1.4.7-blue" alt="Version"/>
+  <img src="https://img.shields.io/badge/Version-1.4.8-blue" alt="Version"/>
   <img src="https://img.shields.io/badge/Sensors-111-brightgreen" alt="111 Sensors"/>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
 </p>
@@ -19,6 +19,10 @@
 
 ### **WORK IN PROGRESS**
 - (no changes yet)
+
+### 1.4.8 (2026-04-25)
+- Fix: migrate to @iobroker/eslint-config (W0062 resolved)
+- Fix: remove redundant eslint/js/globals devDependencies
 
 ### 1.4.7 (2026-04-25)
 - Fix: workflow job names corrected (check-and-lint, adapter-tests, deploy)
