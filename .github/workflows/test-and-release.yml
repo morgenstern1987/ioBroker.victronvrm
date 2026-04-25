@@ -22,11 +22,27 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  # W3013: must use ioBroker/testing-action-check@v1
-  check-and-lint:
+  # Branch protection expects exactly: "lint"
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: ioBroker/testing-action-check@v1
+      - uses: actions/checkout@v4
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Install dependencies
+        run: npm install
+      - name: Run ESLint
+        run: npm run lint
+
+  # Branch protection expects exactly: "test-package"
+  test-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
         with:
           node-version: '24.x'
           install-command: 'npm install'
@@ -42,7 +58,9 @@ jobs:
         node-version: [20.x, 22.x, 24.x]
         os: [ubuntu-latest]
     steps:
-      - uses: ioBroker/testing-action-adapter@v1
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
@@ -61,7 +79,23 @@ jobs:
       id-token: write
       contents: write
     steps:
-      - uses: ioBroker/testing-action-deploy@v1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: npm install
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
           node-version: '24.x'
           install-command: 'npm install'
