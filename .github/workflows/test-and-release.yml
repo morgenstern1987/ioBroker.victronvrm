@@ -1,6 +1,5 @@
 name: Test and Release
 
-# E3008: push trigger must include tags
 on:
   push:
     branches:
@@ -20,61 +19,53 @@ on:
         required: false
         default: 'patch'
 
-# E3009: recommended concurrency configuration
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Force all GitHub Actions to run on Node.js 24
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  # E3010: job "check-and-lint" required by ioBroker checker
-  # Also named "lint" for GitHub branch protection compatibility
-  check-and-lint:
-    name: check-and-lint
+  # Branch protection expects exactly: "lint"
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - name: Use Node.js 24
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 24
       - name: Install dependencies
         run: npm install
       - name: Run ESLint
         run: npm run lint
+
+  # Branch protection expects exactly: "test-package"
+  test-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install dependencies
+        run: npm install
       - name: Run package tests
         run: npm run test:package
 
-  # Alias for branch protection rule "lint"
-  lint:
-    name: lint
-    needs: [check-and-lint]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "lint passed via check-and-lint"
-
-  # Alias for branch protection rule "test-package"
-  test-package:
-    name: test-package
-    needs: [check-and-lint]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "test-package passed via check-and-lint"
-
-  # E3011: job "adapter-tests" required by ioBroker checker
+  # Branch protection expects: "adapter-tests (20)", "adapter-tests (22)", "adapter-tests (24)"
   adapter-tests:
-    name: adapter-tests
+    needs: lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20, 22, 24]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
@@ -82,17 +73,23 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-  # Alias for branch protection rule "test-unit"
+  # Alias for branch protection "test-unit" check
   test-unit:
-    name: test-unit
-    needs: [adapter-tests]
+    needs: adapter-tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test-unit passed via adapter-tests"
+      - run: echo "test-unit passed"
 
-  # E3012: job "deploy" for automated releases
+  # Alias for ioBroker checker E3010 requirement
+  check-and-lint:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "check-and-lint passed (alias for lint)"
+
+  # E3012: deploy job
   deploy:
-    needs: [check-and-lint, adapter-tests]
+    needs: [lint, test-package, adapter-tests]
     runs-on: ubuntu-latest
     if: |
       github.ref == 'refs/heads/main' && (
@@ -100,12 +97,12 @@ jobs:
         github.event_name == 'workflow_dispatch'
       )
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Use Node.js 24
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org/
@@ -116,7 +113,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
         env:
