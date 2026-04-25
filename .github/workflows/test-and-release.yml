@@ -1,10 +1,14 @@
 name: Test and Release
 
+# E3008: push trigger must include tags
 on:
   push:
     branches:
       - main
       - master
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-**'
   pull_request:
     branches:
       - main
@@ -12,45 +16,22 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: 'Release type (patch, minor, major) – only used for documentation'
+        description: 'Release type (patch, minor, major)'
         required: false
         default: 'patch'
 
-# Force all GitHub Actions (checkout, setup-node, etc.) to run on Node.js 24
+# E3009: recommended concurrency configuration
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Force all GitHub Actions to run on Node.js 24
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  # ── Package file tests ────────────────────────────────────────────────────────
-  test-package:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 24
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - name: Install dependencies
-        run: npm install
-      - name: Run package tests
-        run: npm run test:package
-
-  # ── Unit tests ────────────────────────────────────────────────────────────────
-  test-unit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 24
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - name: Install dependencies
-        run: npm install
-      - name: Run unit tests
-        run: npm run test:unit
-
-  # ── Lint ─────────────────────────────────────────────────────────────────────
-  lint:
+  # E3010: job "check-and-lint" is required
+  check-and-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -62,10 +43,29 @@ jobs:
         run: npm install
       - name: Run ESLint
         run: npm run lint
+      - name: Run package tests
+        run: npm run test:package
 
-  # ── Release (on release commit OR manual dispatch on main) ───────────────────
-  release:
-    needs: [test-package, test-unit, lint]
+  # E3011: job "adapter-tests" is required
+  adapter-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Run unit tests
+        run: npm run test:unit
+
+  # E3012: job "deploy" for automated releases
+  deploy:
+    needs: [check-and-lint, adapter-tests]
     runs-on: ubuntu-latest
     if: |
       github.ref == 'refs/heads/main' && (
@@ -94,4 +94,3 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

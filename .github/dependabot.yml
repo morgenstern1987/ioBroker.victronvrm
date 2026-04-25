@@ -1,10 +1,25 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  # E8916: github-actions entry required
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "monthly"
-      day: "monday"
-    open-pull-requests-limit: 10
+      interval: weekly
+    cooldown:
+      default: 7
     labels:
-      - "dependencies"
+      - dependencies
+
+  # npm with cooldown >= 7 days (E8915)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default: 7
+    labels:
+      - dependencies
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-patch

@@ -9,8 +9,8 @@
  * Can also be run manually: node scripts/add-changelog-placeholder.js
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const README = path.join(__dirname, '..', 'README.md');
 const PLACEHOLDER = '### **WORK IN PROGRESS**';
