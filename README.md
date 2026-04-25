@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
-  <img src="https://img.shields.io/badge/Version-1.4.3-blue" alt="Version"/>
+  <img src="https://img.shields.io/badge/Version-1.4.4-blue" alt="Version"/>
   <img src="https://img.shields.io/badge/Sensors-111-brightgreen" alt="111 Sensors"/>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
 </p>
@@ -19,6 +19,12 @@
 
 ### **WORK IN PROGRESS**
 - (no changes yet)
+
+### 1.4.4 (2026-04-25)
+- Add adapter icon (admin/victronvrm.png)
+- Migrate to ESLint v9 Flat Config (eslint.config.mjs), remove deprecated .eslintrc.json
+- Inject adapter sleep function into VrmApiClient (no Node.js global setTimeout in lib)
+- Add real package-lock.json for reproducible installs
 
 ### 1.4.3 (2026-04-21)
 - Docs: added GX device log interval explanation (set to 1 min for best update frequency)

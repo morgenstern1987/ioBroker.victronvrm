@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.3",
+    "version": "1.4.4",
     "news": {
+      "1.4.4": {
+        "en": "Add adapter icon; migrate to ESLint v9 Flat Config (eslint.config.mjs); inject adapter sleep function into VrmApiClient (no Node.js global setTimeout in lib); add real package-lock.json",
+        "de": "Adapter-Icon hinzugefügt; Migration auf ESLint v9 Flat Config (eslint.config.mjs); Adapter-Sleep-Funktion in VrmApiClient injiziert (kein Node.js globales setTimeout in der Lib); echte package-lock.json hinzugefügt",
+        "ru": "Добавлена иконка адаптера; миграция на ESLint v9 Flat Config; внедрена функция sleep адаптера в VrmApiClient; добавлен реальный package-lock.json",
+        "pt": "Ícone do adaptador adicionado; migração para ESLint v9 Flat Config; função sleep do adaptador injetada no VrmApiClient; package-lock.json real adicionado",
+        "nl": "Adapter-pictogram toegevoegd; migratie naar ESLint v9 Flat Config; adapter sleep-functie geïnjecteerd in VrmApiClient; echte package-lock.json toegevoegd",
+        "fr": "Icône d'adaptateur ajoutée; migration vers ESLint v9 Flat Config; fonction sleep de l'adaptateur injectée dans VrmApiClient; vrai package-lock.json ajouté",
+        "it": "Icona adattatore aggiunta; migrazione a ESLint v9 Flat Config; funzione sleep adattatore iniettata in VrmApiClient; package-lock.json reale aggiunto",
+        "es": "Icono de adaptador añadido; migración a ESLint v9 Flat Config; función sleep del adaptador inyectada en VrmApiClient; package-lock.json real añadido",
+        "pl": "Dodano ikonę adaptera; migracja do ESLint v9 Flat Config; funkcja sleep adaptera wstrzyknięta do VrmApiClient; dodano prawdziwy package-lock.json",
+        "uk": "Додано іконку адаптера; міграція на ESLint v9 Flat Config; функцію sleep адаптера впроваджено у VrmApiClient; додано реальний package-lock.json",
+        "zh-cn": "添加适配器图标；迁移到ESLint v9 Flat Config；将适配器sleep函数注入VrmApiClient；添加真实的package-lock.json"
+      },
       "1.4.3": {
         "en": "Docs: added GX device log interval explanation (set to 1 min for best update frequency); changed default diagnostics polling interval from 30s to 60s",
         "de": "Doku: Erklärung zum GX-Protokollierungsintervall hinzugefügt (auf 1 min setzen für beste Aktualisierungsrate); Standard-Diagnose-Intervall von 30s auf 60s geändert",
@@ -130,7 +143,7 @@
     },
     "platform": "Javascript/Node.js",
     "extIcon": "https://raw.githubusercontent.com/morgenstern1987/ioBroker.victronvrm/main/admin/victronvrm.png",
-    "icon": "victronvrm.png",
+    "icon": "admin/victronvrm.png",
     "enabled": true,
     "mode": "daemon",
     "compact": true,
@@ -141,7 +154,7 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=6.0.11"
+        "js-controller": ">=5.0.19"
       }
     ],
     "globalDependencies": [],

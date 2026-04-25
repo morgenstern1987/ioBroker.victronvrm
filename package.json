@@ -1,6 +1,6 @@
 {
   "name": "iobroker.victronvrm",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Reads data from Victron Energy VRM API v2: Battery, MultiPlus, Grid, PV Inverter, Tank, Solar Charger (111 sensors)",
   "author": {
     "name": "morgenstern1987",
@@ -61,7 +61,7 @@
     "chai": "^4.5.0",
     "eslint": "^9.0.0",
     "mocha": "^10.7.0",
-    "sinon": "^19.0.0",
+    "sinon": "^19.0.5",
     "sinon-chai": "^3.7.0",
     "@eslint/js": "^9.0.0",
     "globals": "^15.0.0"
