@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "victronvrm",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "news": {
+      "1.4.5": {
+        "en": "Fix: all adapter checker errors resolved (dependencies updated, io-package.json schema fixes, workflow improvements, dependabot config)",
+        "de": "Fix: alle Adapter-Checker-Fehler behoben (Abhängigkeiten aktualisiert, io-package.json Schema-Fixes, Workflow-Verbesserungen, Dependabot-Konfiguration)",
+        "ru": "Исправление: устранены все ошибки проверки адаптера",
+        "pt": "Correção: todos os erros do verificador de adaptador resolvidos",
+        "nl": "Fix: alle adapter checker fouten opgelost",
+        "fr": "Correction: toutes les erreurs du vérificateur d'adaptateur résolues",
+        "it": "Fix: tutti gli errori del checker adattatore risolti",
+        "es": "Corrección: todos los errores del verificador de adaptador resueltos",
+        "pl": "Poprawka: rozwiązano wszystkie błędy sprawdzania adaptera",
+        "uk": "Виправлення: усунуто всі помилки перевірки адаптера",
+        "zh-cn": "修复：解决所有适配器检查器错误"
+      },
       "1.4.4": {
         "en": "Add adapter icon; migrate to ESLint v9 Flat Config (eslint.config.mjs); inject adapter sleep function into VrmApiClient (no Node.js global setTimeout in lib); add real package-lock.json",
         "de": "Adapter-Icon hinzugefügt; Migration auf ESLint v9 Flat Config (eslint.config.mjs); Adapter-Sleep-Funktion in VrmApiClient injiziert (kein Node.js globales setTimeout in der Lib); echte package-lock.json hinzugefügt",
@@ -154,24 +167,20 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.19"
+        "js-controller": ">=6.0.11"
       }
     ],
-    "globalDependencies": [],
-    "nodeVersion": ">=18",
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
+    ],
     "loglevel": "info",
     "readme": "https://github.com/morgenstern1987/ioBroker.victronvrm/blob/main/README.md",
     "connectionType": "cloud",
     "dataSource": "poll",
     "messagebox": false,
-    "supportCustoms": false,
-    "allowInit": false,
-    "encryptedNative": [
-      "accessToken"
-    ],
-    "protectedNative": [
-      "accessToken"
-    ]
+    "supportCustoms": false
   },
   "native": {
     "accessToken": "",
@@ -214,5 +223,11 @@
       },
       "native": {}
     }
+  ],
+  "encryptedNative": [
+    "accessToken"
+  ],
+  "protectedNative": [
+    "accessToken"
   ]
 }

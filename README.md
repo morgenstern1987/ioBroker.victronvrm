@@ -76,9 +76,15 @@
 
 ## Installation
 
+Install via ioBroker Admin interface:
+
+1. Open ioBroker Admin → **Adapter**
+2. Search for **victronvrm**
+3. Click **Install**
+
+Or via ioBroker CLI:
+
 ```bash
-cd /opt/iobroker
-npm install /path/to/iobroker.victronvrm
 iobroker add victronvrm
 ```
 
