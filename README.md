@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://vrm.victronenergy.com"><img src="https://img.shields.io/badge/VRM-Portal-blue" alt="VRM Portal"/></a>
   <a href="https://vrm.victronenergy.com/access-tokens"><img src="https://img.shields.io/badge/VRM-Access%20Tokens-orange" alt="Access Tokens"/></a>
-  <img src="https://img.shields.io/badge/Version-1.4.4-blue" alt="Version"/>
+  <img src="https://img.shields.io/badge/Version-1.4.7-blue" alt="Version"/>
   <img src="https://img.shields.io/badge/Sensors-111-brightgreen" alt="111 Sensors"/>
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18-green" alt="Node.js"/>
 </p>
@@ -19,6 +19,11 @@
 
 ### **WORK IN PROGRESS**
 - (no changes yet)
+
+### 1.4.7 (2026-04-25)
+- Fix: workflow job names corrected (check-and-lint, adapter-tests, deploy)
+- Fix: removed ioBroker testing actions that required npm ci
+- Fix: dependabot open-pull-requests-limit set to 15
 
 ### 1.4.6 (2026-04-25)
 - Fix: remove redundant devDependencies (chai/mocha/sinon are included by @iobroker/testing)
